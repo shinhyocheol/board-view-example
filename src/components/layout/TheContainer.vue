@@ -1,8 +1,8 @@
 <template>
   <div class="wrapper">
     <Header />  <!-- 헤더 -->
-    <LeftBar /> <!-- 좌츠 메뉴바 -->
-    
+    <LeftBar /> <!-- 좌측 메뉴바 -->
+
     <div class="content-view">
       <router-view></router-view>
     </div>

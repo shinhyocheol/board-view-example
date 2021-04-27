@@ -16,6 +16,16 @@ const routes = [
           path: '/posts',
           name: 'Posts',
           component: () => import('@/components/posts/Posts'),
+        },
+        {
+          path: '/posts/detail',
+          name: 'PostsDetail',
+          component: () => import('@/components/posts/PostsDetail'),
+        },
+        {
+          path: '/posts/reg',
+          name: 'PostsReg',
+          component: () => import('@/components/posts/PostsReg')
         }
       ]
     }

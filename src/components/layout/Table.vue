@@ -1,6 +1,6 @@
 <!-- 공용 컴포넌트 (data-table.vue) 템플릿 -->
 <template>
-  <div class="table-scrollable">
+  <div class="table-scrollable white-backgroud">
     <table class="table table-striped table-bordered table-hover">
       <thead>
         <tr class="heading">

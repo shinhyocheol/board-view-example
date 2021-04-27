@@ -1,25 +1,22 @@
 <template>
   <div class="side-nav navbar-dark bg-dark">
-    <template 
-      v-for="(item, index) in menus" 
-      :key="index">
-      <template 
-        v-if="item.link_to !== ''">
-      <router-link 
-        :to="item.link_to">{{item.title}}
-      </router-link>
+    <template v-for="(item, index) in menus" :key="index">
+      
+      <template v-if="item.link_to !== ''">
+        <router-link 
+          :to="item.link_to">{{item.title}}
+        </router-link>
       </template>
+      
       <template v-else>
-        <button 
-          class="dropdown-btn">{{item.title}}
-        </button>
-        <div 
-          class="dropdown-container">
-        <template v-for="(subItem , index2) in item.sub" :key="index2">
-          <router-link :to="subItem.link_to">{{subItem.title}}</router-link>
-        </template>
+        <button class="dropdown-btn">{{item.title}}</button>
+        <div class="dropdown-container">
+          <template v-for="(subItem , index2) in item.sub" :key="index2">
+            <router-link :to="subItem.link_to">{{subItem.title}}</router-link>
+          </template>
         </div>
       </template>
+      
     </template>
   </div>
 </template>
