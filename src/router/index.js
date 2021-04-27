@@ -7,10 +7,18 @@ const routes = [
       component: () => import('@/components/HelloWorld'), // 동적 import
     },
     {
-      path: '/posts',
-      name: 'Posts',
-      component: () => import('@/components/posts/Posts'),
-    },
+      path: '/',
+      redirect: '/posts',
+      name: 'TheContainer',
+      component: () => import('@/components/layout/TheContainer'),
+      children: [
+        {
+          path: '/posts',
+          name: 'Posts',
+          component: () => import('@/components/posts/Posts'),
+        }
+      ]
+    }
   ];
 
 export const router = createRouter({
