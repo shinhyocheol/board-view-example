@@ -6,10 +6,6 @@
                        class="btn btn-primary float-right">
             <i class="fa fa-plus">등록</i>
           </router-link>
-          <!-- <button class="btn btn-primary float-right"
-             type="button">
-            <i class="fa fa-plus">등록</i>
-          </button> -->
         </div>
     </div>
     <div>
