@@ -1,7 +1,9 @@
 <template>
   <div class="wrapper">
-    <Header />  <!-- 헤더 -->
-    <LeftBar /> <!-- 좌측 메뉴바 -->
+    <!-- 헤더 -->
+    <Header />  
+    <!-- 좌측 메뉴바 -->
+    <LeftBar /> 
 
     <div class="content-view">
       <router-view></router-view>
@@ -19,7 +21,7 @@ export default {
 <style scoped>
   .content-view {
     width: calc(100% - 250px);
-    min-width: 500px;
+    min-width: 450px;
     float: right;
   }
 </style>
