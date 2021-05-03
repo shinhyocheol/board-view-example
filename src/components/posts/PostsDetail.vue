@@ -101,6 +101,7 @@ export default {
   },
   methods: {
     handleService() {
+      this.readMode()
       this.getPosts()
     },
     readMode() {
@@ -112,14 +113,26 @@ export default {
     getPosts() {
       this.axios.get('http://127.0.0.1:8080/posts/' + this.param.id)
       .then(res => {
-        console.log(res)
         this.posts = res.data
       }).catch(e => {
         console.log(e)
       })
     },
     setPosts() {
-      this.axios.put()
+      let params = {
+        "id": this.param.id,
+        "author": "수정테스트",
+        "title" : this.posts.title,
+        "content" : this.posts.content,
+      }
+      this.axios.put('http://127.0.0.1:8080/posts/' + this.param.id,
+      JSON.stringify(params), {headers: { 'content-type': 'application/json' }}
+      ).then(res => {
+        alert("성공적으로 수정되었습니다.\n글 번호 : " + res.data)
+        this.handleService()
+      }).catch(e => {
+        alert(e.response.data)
+      })
     }
   } 
 }

@@ -11,6 +11,7 @@
               type="text" 
               class="form-control" 
               id="postsTitle" 
+              v-model="title"
               placeholder="글 제목을 입력해주세요."/>
           </div>
 
@@ -20,6 +21,7 @@
               rows="10"
               class="form-control" 
               id="postsContent"
+              v-model="content"
               placeholder="본문내용을 입력해주세요." />
           </div>
 
@@ -40,7 +42,8 @@
       <div class="col-auto">
         <button 
           class="btn btn-success" 
-          type="button">
+          type="button"
+          @click="regPosts()">
           <i class="fa">저장</i>
         </button>
       </div>
@@ -58,13 +61,15 @@ export default {
   methods: {
     regPosts() {
       let params = {
+        "author": "vue",
         "title" : this.title,
-        "content" : this.content
+        "content" : this.content,
       }
       this.axios.post('http://127.0.0.1:8080/posts',
-      JSON.stringify(params))
-      .then(res => {
+      JSON.stringify(params), {headers: { 'content-type': 'application/json' }}
+      ).then(res => {
         alert("성공적으로 저장되었습니다.\n글 번호 : " + res.data)
+        this.$router.push("/posts")
       }).catch(e => {
         alert(e.response.data)
       })
