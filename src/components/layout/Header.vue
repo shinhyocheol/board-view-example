@@ -2,8 +2,8 @@
   <div class="main-header">
     <div class="navbar navbar-dark bg-dark shadow-sm mb-3">
       <div class="container d-flex justify-content-between">
-        <a href="#" class="navbar-brand d-flex align-items-center">
-          <!-- <strong>Hyo's Blog</strong> -->
+        <a href="#" class="navbar-brand d-flex align-items-right">
+          <strong class="text-right">Posts</strong>
         </a>
       </div>
     </div>
@@ -16,8 +16,8 @@ export default {
 </script>
 <style scoped>
 .main-header {
-    width: calc(100% - 250px);
-    min-width: 450px;
-    float: right;
+    /* width: calc(100% - 250px);
+    min-width: 750px;
+    float: right; */
 }
 </style>

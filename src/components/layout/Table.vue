@@ -19,10 +19,34 @@
       </tbody>
     </table>
   </div>
+  <pagination 
+    v-model="page" 
+    :records="count" 
+    :per-page="5" 
+    @paginate="pagingHandle"
+  />
 </template>
 <script>
+import Pagination from 'v-pagination-3'
 export default {
+  components: {Pagination},
   name: "Table",
-  props: ['list']
+  props: ['list'],
+  data () {
+    return {
+      page: 1,
+      count: 0
+    }
+  },
+  watch: {
+    list() {
+      this.count = this.list.length
+    }
+  },
+  methods: {
+    pagingHandle ($event) {
+      console.log($event)
+    }
+  }
 }
 </script>

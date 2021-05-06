@@ -7,17 +7,17 @@
                   id="table" >
             <template v-slot:header>
               <th>#</th>
-              <th>작성자</th>
               <th>제목</th>
               <th>본문</th>
+              <th>작성자</th>
               <th>작성일</th>
               <th class="text-center">비고</th>
             </template>
             <template v-slot:default="slotProps">
               <td>{{slotProps.row.id}}</td>
-              <td>{{slotProps.row.author}}</td>
               <td>{{slotProps.row.title}}</td>
               <td>{{slotProps.row.content}}</td>
+              <td>{{slotProps.row.author}}</td>
               <td>{{slotProps.row.createdDate}}</td>
               <td class="text-center">
                 <router-link :to="{ 

@@ -3,7 +3,7 @@
     <!-- 헤더 -->
     <Header />  
     <!-- 좌측 메뉴바 -->
-    <LeftBar /> 
+    <!-- <LeftBar />  -->
 
     <div class="content-view">
       <router-view></router-view>
@@ -12,16 +12,16 @@
 </template>
 <script>
 import Header from '@/components/layout/Header' 
-import LeftBar from '@/components/layout/LeftBar' 
+// import LeftBar from '@/components/layout/LeftBar' 
 export default {
-  components: {Header, LeftBar},
+  components: {Header},
   name: "NavBar"
 }
 </script>
 <style scoped>
   .content-view {
-    width: calc(100% - 250px);
-    min-width: 450px;
-    float: right;
+    /* width: calc(100% - 250px); */
+    /* min-width: 750px; */
+    /* float: right; */
   }
 </style>
