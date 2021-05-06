@@ -128,7 +128,7 @@ export default {
       this.axios.put('http://127.0.0.1:8080/posts/' + this.param.id,
       JSON.stringify(params), {headers: { 'content-type': 'application/json' }}
       ).then(res => {
-        alert("성공적으로 수정되었습니다.\n글 번호 : " + res.data)
+        alert("성공적으로 수정되었습니다.\n글 번호 : [" + res.data + "]")
         this.handleService()
       }).catch(e => {
         alert(e.response.data)

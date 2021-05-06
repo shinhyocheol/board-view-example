@@ -41,7 +41,6 @@ export default {
   watch: {
     list() {
       this.count = this.cnt
-      console.log(this.count)
     }
   },
   methods: {

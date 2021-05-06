@@ -68,7 +68,7 @@ export default {
       this.axios.post('http://127.0.0.1:8080/posts',
       JSON.stringify(params), {headers: { 'content-type': 'application/json' }}
       ).then(res => {
-        alert("성공적으로 저장되었습니다.\n글 번호 : " + res.data)
+        alert("성공적으로 저장되었습니다.\nn글 번호 : [" + res.data + "]")
         this.$router.push("/posts")
       }).catch(e => {
         alert(e.response.data)
