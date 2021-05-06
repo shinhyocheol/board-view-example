@@ -3,7 +3,9 @@
 
       <div class="card">
         <div class="card-body">
-          <Table :list="list" 
+          <Table :list="list"
+                 :cnt="totalCnt"
+                 :getData="getPosts"
                   id="table" >
             <template v-slot:header>
               <th>#</th>
@@ -52,12 +54,16 @@ export default {
   components: {Table},
   data () {
     return {
-      posts: []
+      posts: [],
+      cnt : 0
     }
   },
   computed: {
     list () {
       return this.posts
+    },
+    totalCnt () {
+      return this.cnt
     }
   },
   mounted () {
@@ -65,12 +71,15 @@ export default {
   },
   methods: {
     handleService() {
-      this.getPosts()
+      var params = new URLSearchParams()
+      params.append("page", 1)
+      this.getPosts(params)
     },
-    getPosts() {
-      this.axios.get("http://127.0.0.1:8080/posts")
+    getPosts(params) {
+      this.axios.get("http://127.0.0.1:8080/posts?" + params)
       .then(res => {
-        this.posts = res.data
+        this.posts = res.data.content
+        this.cnt = res.data.totalElements
       }).catch(e => {
         alert(e)
       })

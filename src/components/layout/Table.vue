@@ -22,7 +22,7 @@
   <pagination 
     v-model="page" 
     :records="count" 
-    :per-page="5" 
+    :per-page="10" 
     @paginate="pagingHandle"
   />
 </template>
@@ -31,7 +31,7 @@ import Pagination from 'v-pagination-3'
 export default {
   components: {Pagination},
   name: "Table",
-  props: ['list'],
+  props: ['list', 'cnt', 'getData'],
   data () {
     return {
       page: 1,
@@ -40,12 +40,15 @@ export default {
   },
   watch: {
     list() {
-      this.count = this.list.length
+      this.count = this.cnt
+      console.log(this.count)
     }
   },
   methods: {
-    pagingHandle ($event) {
-      console.log($event)
+    pagingHandle (page) {
+      const params = new URLSearchParams()
+      params.append("page", page)
+      this.getData(params)
     }
   }
 }
