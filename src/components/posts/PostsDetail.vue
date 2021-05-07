@@ -58,7 +58,8 @@
       <div class="col-auto">
         <button 
           class="btn btn-danger" 
-          type="button">삭제
+          type="button"
+          @click="delPosts()">삭제
         </button>
       </div>
 
@@ -128,8 +129,19 @@ export default {
       this.axios.put('http://127.0.0.1:8080/posts/' + this.param.id,
       JSON.stringify(params), {headers: { 'content-type': 'application/json' }}
       ).then(res => {
-        alert("성공적으로 수정되었습니다.\n글 번호 : [" + res.data + "]")
+        console.log(res.data)
+        alert("성공적으로 수정되었습니다.")
         this.handleService()
+      }).catch(e => {
+        alert(e.response.data)
+      })
+    },
+    delPosts() {
+      this.axios.delete('http://127.0.0.1:8080/posts/' + this.param.id
+      ).then(res => {
+        console.log(res.data)
+        alert("성공적으로 삭제되었습니다.")
+        this.$router.push("/posts")
       }).catch(e => {
         alert(e.response.data)
       })
