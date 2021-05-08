@@ -2,9 +2,14 @@ import { createWebHistory, createRouter } from 'vue-router';
 
 const routes = [
     {
+      path: '/login',
+      name: 'Login',
+      component: () => import('@/components/Login') // 동적 import
+    },
+    {
       path: '/hello',
       name: 'Hello',
-      component: () => import('@/components/HelloWorld'), // 동적 import
+      component: () => import('@/components/HelloWorld')
     },
     {
       path: '/',

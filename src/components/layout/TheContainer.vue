@@ -1,13 +1,16 @@
 <template>
   <div class="wrapper">
-    <!-- 헤더 -->
-    <Header />  
-    <!-- 좌측 메뉴바 -->
+    <!-- Header -->
+    <Header />
+
+    <!-- Side Bar -->
     <!-- <LeftBar />  -->
 
+    <!-- Body -->
     <div class="content-view">
       <router-view></router-view>
     </div>
+
   </div>
 </template>
 <script>
