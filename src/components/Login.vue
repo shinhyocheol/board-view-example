@@ -92,7 +92,7 @@ export default {
         // 로그인 API 통신요청
         this.store.dispatch('login', {id, password})
         .then(() => {
-          console.log("로그인 API 통신 성공")
+          this.router.push(this.$routePath + "/dashboard")
         }).catch(e => {
           console.log(e)
           alert("로그인 요청에 문제가 발생했습니다.")
