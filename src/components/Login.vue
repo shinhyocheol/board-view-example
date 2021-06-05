@@ -7,7 +7,7 @@
             <h4 class="card-header">로그인</h4>
             <div class="card-body">
               <div class="alert alert-danger" role="alert">
-                방문을 환영합니다! 로그인 정보를 입력해주시기 바랍니다.
+                환영합니다! 로그인 정보를 입력해주시기 바랍니다.
               </div>
               <form data-toggle="validator" role="form" method="post" action="#">
                 <div class="row">
@@ -63,7 +63,10 @@
               </form>
               <div class="form-group">
               <div class="clear"></div>
-                <br><i class="fa fa-user fa-fw" />처음 방문하십니까? <a href="#">회원가입</a><br>
+                <br>
+                <i class="fa fa-user fa-fw" />처음 방문하십니까? 
+                <a href="#">회원가입</a>
+                <br>
               </div>
             </div>
           </div>
