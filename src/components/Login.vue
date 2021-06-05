@@ -86,8 +86,25 @@ export default {
   },
   methods: {
     login() {
-      console.log(this.id)
-      console.log(this.password)
+      // 아이디와 패스워드 입력여부 확인
+      if (this.id && this.password) {
+        
+        var id = this.id              // 아이디
+        var password = this.password  // 비밀번호
+        
+        // 로그인 API 통신요청
+        this.store.dispatch('login', {id, password})
+        .then(() => {
+          this.router.push(this.$routePath + "/dashboard")
+        }).catch(e => {
+          console.log(e)
+          alert("로그인 요청에 문제가 발생했습니다.")
+        })
+
+      } else {
+        alert("아이디 또는 비밀번호가 입력되지 않았습니다.")
+        return false
+      }
     }
   }
 }
