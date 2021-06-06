@@ -28,6 +28,7 @@
                         <input 
                           type="text" 
                           class="form-control"
+                          placeholder="이메일을 입력해주세요."
                           v-model="id" 
                         />
                       </div>
@@ -52,7 +53,8 @@
                         </div>
                         <input 
                           type="password" 
-                          v-model="password" 
+                          v-model="password"
+                          placeholder="비밀번호를 입력해주세요."
                           class="form-control"
                         />
                       </div>
@@ -78,6 +80,7 @@
                         <input 
                           type="text" 
                           class="form-control"
+                          placeholder="이름을 입력해주세요."
                           v-model="name" 
                         />
                       </div>
@@ -101,8 +104,9 @@
                           </span>
                         </div>
                         <input 
-                          type="password" 
+                          type="text" 
                           v-model="nickname" 
+                          placeholder="닉네임을 입력해주세요."
                           class="form-control"
                         />
                       </div>
@@ -126,8 +130,9 @@
                           </span>
                         </div>
                         <input 
-                          type="password" 
-                          v-model="mobile" 
+                          type="text" 
+                          v-model="mobile"
+                          placeholder="연락처를 입력해주세요('-' 제외)"
                           class="form-control"
                         />
                       </div>
@@ -178,8 +183,16 @@ export default {
             "nickname": this.nickname,      // 닉네임
             "mobile": this.mobile           // 연락처
         }
-
-        console.log("신규등록 정보 : " + params)
+        console.log(params)
+        this.axios.post("http://localhost:8080/signup", JSON.stringify(params), {
+            headers: { 'content-type': 'application/json' }
+        }).then(res => {
+            alert("회원가입이 정상적으로 완료되었습니다.")
+            console.log("result : " + res)
+        }).catch(e => {
+          alert("데이터 등록에 문제가 발생했습니다.")
+          console.log("error : " + e.response.data)
+        })
     }
   }
 }

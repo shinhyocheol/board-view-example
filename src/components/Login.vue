@@ -26,6 +26,7 @@
                         <input 
                           type="text" 
                           class="form-control"
+                          placeholder="아이디(이메일)를 입력해주세요."
                           v-model="id" 
                         />
                       </div>
@@ -48,7 +49,8 @@
                         </div>
                         <input 
                           type="password" 
-                          v-model="password" 
+                          v-model="password"
+                          placeholder="비밀번호를 입력해주세요."
                           class="form-control"
                         />
                       </div>
@@ -71,7 +73,7 @@
               <div class="clear"></div>
                 <br>
                 <i class="fa fa-user fa-fw" />처음 방문하십니까? 
-                <a href="#">회원가입</a>
+                <a href="/join">회원가입</a>
                 <br>
               </div>
             </div>
@@ -101,7 +103,7 @@ export default {
         // 로그인 API 통신요청
         this.store.dispatch('login', {id, password})
         .then(() => {
-          this.router.push(this.$routePath + "/dashboard")
+          this.router.push(this.$routePath + "/posts")
         }).catch(e => {
           console.log(e)
           alert("로그인 요청에 문제가 발생했습니다.")

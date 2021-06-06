@@ -36,12 +36,11 @@ export const store = createStore({
     actions: {
         login ({commit}, {id, password}) {
             const params = {
-                "id": id,
+                "email": id,
                 "password": password
             }
-            const url = "http://localhost:8080/signin"
 
-            return axios.post(url, JSON.stringify(params), {
+            return axios.post("http://localhost:8080/signin", JSON.stringify(params), {
                 headers: { 'content-type': 'application/json' }
             }).then(res => {
                 commit('login', res)
