@@ -70,7 +70,7 @@
                 </div>
               </form>
               <div class="form-group">
-              <div class="clear"></div>
+                <div class="clear"></div>
                 <br>
                 <i class="fa fa-user fa-fw" />처음 방문하십니까? 
                 <a href="/join">회원가입</a>

@@ -61,7 +61,6 @@ export default {
   methods: {
     regPosts() {
       let params = {
-        "author": "vue",
         "title" : this.title,
         "content" : this.content,
       }

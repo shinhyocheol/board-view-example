@@ -154,7 +154,13 @@
                 </div>
                 
               </form>
-              <div class="form-group"></div>
+              <div class="form-group">
+                <div class="clear"></div>
+                <br>
+                <i class="fa fa-user fa-fw" />이미 계정을 등록하셨습니까?
+                <a href="/login">로그인</a>
+                <br>
+              </div>
             </div>
           </div>
         </div>
@@ -183,12 +189,22 @@ export default {
             "nickname": this.nickname,      // 닉네임
             "mobile": this.mobile           // 연락처
         }
-        console.log(params)
         this.axios.post("http://localhost:8080/signup", JSON.stringify(params), {
             headers: { 'content-type': 'application/json' }
-        }).then(res => {
+        }).then(() => {
             alert("회원가입이 정상적으로 완료되었습니다.")
-            console.log("result : " + res)
+            
+            // 회원가입이 정상적으로 이루어진 시점에서 해당 아이디와 비밀번호를 가지고 바로 로그인 요청
+            let loginId = this.id
+            let loginPw = this.password
+            // 로그인 API 통신요청
+            this.store.dispatch('login', {loginId, loginPw})
+            .then(() => {
+              this.router.push(this.$routePath + "/posts")
+            }).catch(e => {
+              console.log(e)
+              alert("로그인 요청에 문제가 발생했습니다.")
+            })
         }).catch(e => {
           alert("데이터 등록에 문제가 발생했습니다.")
           console.log("error : " + e.response.data)

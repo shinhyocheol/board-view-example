@@ -122,7 +122,6 @@ export default {
     setPosts() {
       let params = {
         "id": this.param.id,
-        "author": "수정테스트",
         "title" : this.posts.title,
         "content" : this.posts.content,
       }
