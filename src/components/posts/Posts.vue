@@ -76,6 +76,7 @@ export default {
       this.getPosts(params)
     },
     getPosts(params) {
+      this.axios.defaults.headers['x-access-token'] = this.store.state.token
       this.axios.get("http://127.0.0.1:8080/posts?" + params)
       .then(res => {
         this.posts = res.data.content
