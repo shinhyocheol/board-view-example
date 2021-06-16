@@ -15,6 +15,6 @@ app.use(store);
 app.use(router);
 app.mount('#app');
 
-app.config.globalProperties.axios=axios // axios 전역사용
-app.config.globalProperties.store=store // store 전역사용
+app.config.globalProperties.axios=axios   // axios 전역사용
+app.config.globalProperties.store=store   // store 전역사용
 app.config.globalProperties.router=router // router 전역사용
