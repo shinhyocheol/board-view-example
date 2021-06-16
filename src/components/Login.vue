@@ -103,6 +103,7 @@ export default {
         // 로그인 API 통신요청
         this.store.dispatch('login', {id, password})
         .then(() => {
+          this.axios.defaults.headers['x-access-token'] = this.store.state.token
           this.router.push(this.$routePath + "/posts")
         }).catch(e => {
           console.log(e)

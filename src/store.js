@@ -2,7 +2,6 @@ import { createStore } from 'vuex'
 import axios from 'axios'
 
 export const store = createStore({
-    
     state: {
         token: null,
         id: null,
@@ -11,9 +10,7 @@ export const store = createStore({
         email: null,
         nickname: null
     },
-    
     getters: {},
-
     mutations: {
         login (state, item) {
             state.token = item.headers['x-access-token']
@@ -32,14 +29,12 @@ export const store = createStore({
             state.nickname = null
         }
     },
-
     actions: {
         login ({commit}, {id, password}) {
             const params = {
                 "email": id,
                 "password": password
             }
-
             return axios.post("http://localhost:8080/signin", JSON.stringify(params), {
                 headers: { 'content-type': 'application/json' }
             }).then(res => {

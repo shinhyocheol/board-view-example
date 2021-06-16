@@ -18,9 +18,8 @@ const routes = [
       component: () => import('@/components/HelloWorld')
     },
     {
-      path: '/',
-      redirect: '/posts',
       name: 'TheContainer',
+      redirect: '/posts',
       component: () => import('@/components/layout/TheContainer'),
       children: [
         {
