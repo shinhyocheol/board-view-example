@@ -1,10 +1,19 @@
 <template>
   <div class="main-header">
-    <div class="navbar navbar-dark bg-dark shadow-sm mb-3">
-      <div class="container d-flex justify-content-between">
-        <a href="#" class="navbar-brand d-flex align-items-right">
-          <strong class="text-right">Platform</strong>
+    <div class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+            <strong>자유로운공간</strong>
         </a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <div class="navbar-nav">
+            <a class="nav-item nav-link" href="#">Home</a>
+            <a class="nav-item nav-link" href="#">Platform</a>
+            <a class="nav-item nav-link" href="#">Chart</a>
+            <a class="nav-item nav-link" href="#">Posts</a>
+            <a class="nav-item nav-link" href="#">ETC</a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
