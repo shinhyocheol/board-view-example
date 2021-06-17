@@ -16,14 +16,16 @@
         </router-link>
       </template>
       
-      <!-- <template v-else>
-        <button class="dropdown-btn">{{item.title}}</button>
-        <div class="dropdown-container">
-          <template v-for="(subItem , index2) in item.sub" :key="index2">
-            <router-link :to="subItem.link_to">{{subItem.title}}</router-link>
-          </template>
-        </div>
-      </template> -->
+      <!-- 
+        <template v-else>
+          <button class="dropdown-btn">{{item.title}}</button>
+          <div class="dropdown-container">
+            <template v-for="(subItem , index2) in item.sub" :key="index2">
+              <router-link :to="subItem.link_to">{{subItem.title}}</router-link>
+            </template>
+          </div>
+        </template> 
+      -->
       
     </template>
   </div>
