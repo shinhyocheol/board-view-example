@@ -43,6 +43,7 @@ const actions = {
       axios.post("http://localhost:8080/signin", JSON.stringify(params), {
         headers: { 'content-type': 'application/json' }
       }).then(res => {
+        alert("정보가 확인되었습니다.\n환영합니다!")
         commit('login', res)
         router.push("/posts")
       }).catch(e => {
