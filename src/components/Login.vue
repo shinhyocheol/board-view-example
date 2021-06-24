@@ -4,7 +4,7 @@
       <div class="container">
         <div class="row justify-content-center align-items-center">
           <div class="col-sm-6">
-            <div class="card">
+            <div class="card shadow-lg">
               <h4 class="card-header">로그인</h4>
               <div class="card-body">
                 <form data-toggle="validator" role="form" method="post" action="#">

@@ -1,7 +1,7 @@
 <template>
   <div class="container">
 
-      <div class="card">
+      <div class="card shadow-lg" style="margin-top: 10px">
         <div class="card-body">
           <Table :list="list"
                  :cnt="totalCnt"
