@@ -8,10 +8,9 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <div class="navbar-nav">
             <a class="nav-item nav-link" href="#">Home</a>
-            <a class="nav-item nav-link" href="#">Platform</a>
-            <a class="nav-item nav-link" href="#">Chart</a>
             <a class="nav-item nav-link" href="#">Posts</a>
-            <a class="nav-item nav-link" href="#">ETC</a>
+            <a class="nav-item nav-link" href="#">Chart</a>
+            <a class="nav-item nav-link" href="#">Etc</a>
           </div>
         </div>
       </div>
@@ -28,5 +27,6 @@ export default {
     /* width: calc(100% - 250px);
     min-width: 750px;
     float: right; */
+    margin-bottom: 20px;
 }
 </style>

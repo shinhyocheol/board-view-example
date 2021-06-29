@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="card">
+    <div class="card shadow-lg">
       <div class="card-body">
         <h5 class="card-title">게시글 상세</h5>
         <p class="card-text">

@@ -1,19 +1,18 @@
 <template>
   <div class="container">
-
-      <div class="card shadow-lg" style="margin-top: 10px">
+      <div class="card shadow-lg">
         <div class="card-body">
           <Table :list="list"
                  :cnt="totalCnt"
                  :getData="getPosts"
                   id="table" >
             <template v-slot:header>
-              <th>#</th>
-              <th>제목</th>
-              <th>본문</th>
-              <th>작성자</th>
-              <th>작성일</th>
-              <th class="text-center">비고</th>
+              <th scope="col">#</th>
+              <th scope="col">제목</th>
+              <th scope="col">본문</th>
+              <th scope="col">작성자</th>
+              <th scope="col">작성일</th>
+              <th scope="col" class="text-center">비고</th>
             </template>
             <template v-slot:default="slotProps">
               <td>{{slotProps.row.id}}</td>
