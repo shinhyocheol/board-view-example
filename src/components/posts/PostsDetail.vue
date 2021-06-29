@@ -7,31 +7,30 @@
           <small class="text-muted">작성자 : {{posts.author}} ({{posts.createdDate}})</small>
         </p>
 
-      <form>
+        <form>
+          <div class="form-group">
+            <label for="postsTitle">제목</label>
+            <input 
+              type="text" 
+              class="form-control" 
+              id="postsTitle" 
+              placeholder="글 제목을 입력해주세요."
+              v-model="posts.title"
+              :disabled="disabled" />
+          </div>
 
-        <div class="form-group">
-          <label for="postsTitle">제목</label>
-          <input 
-            type="text" 
-            class="form-control" 
-            id="postsTitle" 
-            placeholder="글 제목을 입력해주세요."
-            v-model="posts.title"
-            :disabled="disabled" />
-        </div>
-
-        <div class="form-group">
-          <label for="postsContent">본문</label>
-          <textarea 
-            rows="10"
-            class="form-control" 
-            id="postsContent"
-            placeholder="본문내용을 입력해주세요."
-            v-model="posts.content"
-            :disabled="disabled">작성글 본문 테스트중입니다</textarea>
-        </div>
-
+          <div class="form-group">
+            <label for="postsContent">본문</label>
+            <textarea 
+              rows="10"
+              class="form-control" 
+              id="postsContent"
+              placeholder="본문내용을 입력해주세요."
+              v-model="posts.content"
+              :disabled="disabled">작성글 본문 테스트중입니다</textarea>
+          </div>
         </form>
+
       </div>
     </div>
 
@@ -113,11 +112,8 @@ export default {
     },
     getPosts() {
       this.axios.get('http://127.0.0.1:8080/posts/' + this.param.id)
-      .then(res => {
-        this.posts = res.data
-      }).catch(e => {
-        console.log(e)
-      })
+      .then(res => { this.posts = res.data })
+      .catch(e => { console.log(e) })
     },
     setPosts() {
       let params = {

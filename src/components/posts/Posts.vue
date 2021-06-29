@@ -22,11 +22,13 @@
               <td>{{slotProps.row.author}}</td>
               <td>{{slotProps.row.createdDate}}</td>
               <td class="text-center">
-                <router-link :to="{ 
-                                path:'/posts/detail', 
-                                query: { id: slotProps.row.id }
-                              }"
-                              class="btn btn-sm btn-primary">
+                <router-link 
+                  :to="{ 
+                    path:'/posts/detail', 
+                    query: { id: slotProps.row.id }
+                  }"
+                  class="btn btn-sm btn-primary"
+                >
                   <i class="fa fa-search" />
                 </router-link>
               </td>

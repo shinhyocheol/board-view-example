@@ -199,12 +199,8 @@ export default {
             let loginPw = this.password
             // 로그인 API 통신요청
             this.store.dispatch('login', {loginId, loginPw})
-            .then(() => {
-              this.router.push(this.$routePath + "/posts")
-            }).catch(e => {
-              console.log(e)
-              alert("로그인 요청에 문제가 발생했습니다.")
-            })
+            .then(() => {this.router.push(this.$routePath + "/posts")})
+            .catch(e => { alert("로그인 요청에 문제가 발생했습니다.\nmsg:" + e.response.data)})
         }).catch(e => {
           alert("데이터 등록에 문제가 발생했습니다.")
           console.log("error : " + e.response.data)
