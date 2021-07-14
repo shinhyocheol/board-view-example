@@ -27,7 +27,10 @@
               id="postsContent"
               placeholder="본문내용을 입력해주세요."
               v-model="posts.content"
-              :disabled="disabled">작성글 본문 테스트중입니다</textarea>
+              :disabled="disabled"
+            >
+              작성글 본문 테스트중입니다
+            </textarea>
           </div>
         </form>
 

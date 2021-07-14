@@ -51,6 +51,7 @@
   </div>
 </template>
 <script>
+import api from '@/api/index.js'
 export default {
   name: "PostsReg",
   data () {
@@ -64,13 +65,16 @@ export default {
         "title" : this.title,
         "content" : this.content,
       }
-      this.axios.post('http://127.0.0.1:8080/posts',
-      JSON.stringify(params), {headers: { 'content-type': 'application/json' }}
-      ).then(res => {
+      api({
+        url: "/posts",
+        method: 'post',
+        headers: {'content-type': 'application/json'},
+        data: JSON.stringify(params)
+      }).then(res => {
         alert("성공적으로 저장되었습니다.\n글 번호 : [" + res.data + "]")
         this.$router.push("/posts")
-      }).catch(e => {
-        alert(e.response.data)
+      }).catch(err => {
+        alert(err.response.data)
       })
     }
   } 

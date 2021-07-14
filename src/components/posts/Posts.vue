@@ -2,10 +2,12 @@
   <div class="container">
       <div class="card shadow-lg">
         <div class="card-body">
-          <Table :list="list"
-                 :cnt="totalCnt"
-                 :getData="getPosts"
-                  id="table" >
+          <Table 
+            :list="list"
+            :cnt="totalCnt"
+            :getData="getPosts"
+            id="table" 
+          >
             <template v-slot:header>
               <th scope="col">#</th>
               <th scope="col">제목</th>

@@ -11,7 +11,6 @@ const instance = axios.create({
 instance.interceptors.request.use(
   function (config) {
     // 요청직전에 호출되며, axios의 설정을 여기서 진행
-    console.log(config)
     return config
   },
   function (error) {
