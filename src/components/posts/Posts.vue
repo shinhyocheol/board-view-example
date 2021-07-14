@@ -50,6 +50,7 @@
 
 <script>
 import Table from '@/components/layout/Table'
+import api from '@/api/index.js'
 export default {
   name: 'Posts',
   components: {Table},
@@ -77,13 +78,14 @@ export default {
       this.getPosts(params)
     },
     getPosts(params) {
-      this.axios.defaults.headers['x-access-token'] = this.store.state.token
-      this.axios.get("http://127.0.0.1:8080/posts?" + params)
-      .then(res => {
+      api({
+        url: "/posts?" + params,
+        method: 'get'
+      }).then(res => {
         this.posts = res.data.content
         this.cnt = res.data.totalElements
-      }).catch(e => {
-        alert(e)
+      }).catch(err => {
+        alert(err)
       })
     },
   }

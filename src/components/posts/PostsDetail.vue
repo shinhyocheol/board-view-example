@@ -87,6 +87,7 @@
   </div>
 </template>
 <script>
+import api from '@/api/index.js'
 export default {
   name: "PostsDetail",
   data () {
@@ -111,9 +112,17 @@ export default {
       this.disabled = false
     },
     getPosts() {
-      this.axios.get('http://127.0.0.1:8080/posts/' + this.param.id)
-      .then(res => { this.posts = res.data })
-      .catch(e => { console.log(e) })
+      // this.axios.get('http://127.0.0.1:8080/posts/' + this.param.id)
+      // .then(res => { this.posts = res.data })
+      // .catch(e => { console.log(e) })
+      api({
+        url: "/posts/" + this.param.id,
+        method: 'get'
+      }).then(res => {
+        this.posts = res.data
+      }).catch(err => {
+        console.log(err)
+      })
     },
     setPosts() {
       let params = {
@@ -121,24 +130,27 @@ export default {
         "title" : this.posts.title,
         "content" : this.posts.content,
       }
-      this.axios.put('http://127.0.0.1:8080/posts/' + this.param.id,
-      JSON.stringify(params), {headers: { 'content-type': 'application/json' }}
-      ).then(res => {
-        console.log(res.data)
+      api({
+        url: "/posts/" + this.param.id,
+        method: 'put',
+        headers: {'content-type': 'application/json'},
+        data: JSON.stringify(params)
+      }).then(() => {
         alert("성공적으로 수정되었습니다.")
         this.handleService()
-      }).catch(e => {
-        alert(e.response.data)
+      }).catch(err => {
+        alert(err.response.data)
       })
     },
     delPosts() {
-      this.axios.delete('http://127.0.0.1:8080/posts/' + this.param.id
-      ).then(res => {
-        console.log(res.data)
+      api({
+        url: "/posts/" + this.param.id,
+        method: 'delete'
+      }).then(() => {
         alert("성공적으로 삭제되었습니다.")
         this.$router.push("/posts")
-      }).catch(e => {
-        alert(e.response.data)
+      }).catch(err => {
+        alert(err.response.data)
       })
     }
   } 

@@ -193,7 +193,6 @@ export default {
             headers: { 'content-type': 'application/json' }
         }).then(() => {
             alert("회원가입이 정상적으로 완료되었습니다.")
-            
             // 회원가입이 정상적으로 이루어진 시점에서 해당 아이디와 비밀번호를 가지고 바로 로그인 요청
             let loginId = this.id
             let loginPw = this.password
