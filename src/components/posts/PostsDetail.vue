@@ -115,9 +115,6 @@ export default {
       this.disabled = false
     },
     getPosts() {
-      // this.axios.get('http://127.0.0.1:8080/posts/' + this.param.id)
-      // .then(res => { this.posts = res.data })
-      // .catch(e => { console.log(e) })
       api({
         url: "/posts/" + this.param.id,
         method: 'get'
