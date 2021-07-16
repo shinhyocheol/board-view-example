@@ -8,6 +8,48 @@ const instance = axios.create({
   timeout: 1000
 })
 
+// get request
+instance.get.interceptors.request.use(
+  function (config) {
+
+  },
+  function (error) {
+    
+  }
+)
+
+
+
+// post request
+instance.post.interceptors.request.use(
+  function (config) {
+
+  },
+  function (error) {
+    
+  }
+)
+
+// put request
+instance.put.interceptors.request.use(
+  function (config) {
+
+  },
+  function (error) {
+    
+  }
+)
+
+// delete request
+instance.delete.interceptors.request.use(
+  function (config) {
+
+  },
+  function (error) {
+
+  }
+)
+
 instance.interceptors.request.use(
   function (config) {
     // 요청직전에 호출되며, axios의 설정을 여기서 진행
