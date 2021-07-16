@@ -17,6 +17,15 @@ instance.get.interceptors.request.use(
     
   }
 )
+// get response
+instance.get.interceptors.response.use(
+  function (config) {
+
+  },
+  function (error) {
+
+  }
+)
 
 
 
@@ -29,6 +38,15 @@ instance.post.interceptors.request.use(
     
   }
 )
+// post response
+instance.post.interceptors.response.use(
+  function (config) {
+
+  },
+  function (error) {
+
+  }
+)
 
 // put request
 instance.put.interceptors.request.use(
@@ -39,6 +57,15 @@ instance.put.interceptors.request.use(
     
   }
 )
+// put response
+instance.put.interceptors.response.use(
+  function (config) {
+
+  },
+  function (error) {
+
+  }
+)
 
 // delete request
 instance.delete.interceptors.request.use(
@@ -47,6 +74,15 @@ instance.delete.interceptors.request.use(
   },
   function (error) {
 
+  }
+)
+// delete response
+instance.delete.interceptors.request.use(
+  function (config) {
+
+  },
+  function (error) {
+    
   }
 )
 
