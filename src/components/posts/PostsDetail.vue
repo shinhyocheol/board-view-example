@@ -39,8 +39,10 @@
 
     <div class="row mt-3 float-left">
       <div class="col-auto">
-        <router-link :to="{path:'/posts'}"
-                      class="btn btn-primary">
+        <router-link 
+          :to="{path:'/posts'}"
+          class="btn btn-primary"
+        >
           <i class="fa">목록으로</i>
         </router-link>
       </div>
@@ -51,6 +53,7 @@
 
       <div class="col-auto">
         <button 
+          v-if="posts.memberId === memberId"
           class="btn btn-success" 
           type="button"
           @click="setMode()">수정
@@ -59,6 +62,7 @@
 
       <div class="col-auto">
         <button 
+          v-if="posts.memberId === memberId"
           class="btn btn-danger" 
           type="button"
           @click="delPosts()">삭제
@@ -91,16 +95,19 @@
 </template>
 <script>
 import api from '@/api/index.js'
+import { store } from '@/store/index.js'
 export default {
   name: "PostsDetail",
   data () {
     return {
       disabled: true,
+      memberId: store.state.id,
       param: this.$route.query,
       posts: {}
     }
   },
   mounted () {
+    console.log(this.memberId)
     this.handleService()
   },
   methods: {
@@ -117,6 +124,7 @@ export default {
     getPosts() {
       api.get("/posts/" + this.param.id).then(res => {
         this.posts = res.data
+        console.log(this.posts)
       }).catch(err => {
         console.log(err)
       })
