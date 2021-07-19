@@ -65,12 +65,9 @@ export default {
         "title" : this.title,
         "content" : this.content,
       }
-      api({
-        url: "/posts",
-        method: 'post',
-        headers: {'content-type': 'application/json'},
-        data: JSON.stringify(params)
-      }).then(res => {
+      api.post("/posts", JSON.stringify(params),
+        {headers: {'content-type': 'application/json'}}
+      ).then(res => {
         alert("성공적으로 저장되었습니다.\n글 번호 : [" + res.data + "]")
         this.$router.push("/posts")
       }).catch(err => {

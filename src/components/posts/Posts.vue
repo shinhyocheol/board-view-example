@@ -80,24 +80,13 @@ export default {
       this.getPosts(params)
     },
     getPosts(params) {
-      api.getAPI({
-        url: "/posts?" + params,
-        method: 'get'
-      }).then(res => {
+      api.get("/posts?" + params)
+      .then(res => {
         this.posts = res.data.content
         this.cnt = res.data.totalElements
       }).catch(err => {
         alert(err)
       })
-      // api({
-      //   url: "/posts?" + params,
-      //   method: 'get'
-      // }).then(res => {
-      //   this.posts = res.data.content
-      //   this.cnt = res.data.totalElements
-      // }).catch(err => {
-      //   alert(err)
-      // })
     },
   }
 }
