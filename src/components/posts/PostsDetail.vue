@@ -130,6 +130,15 @@ export default {
         "title" : this.posts.title,
         "content" : this.posts.content,
       }
+      // api.put({
+      //   url: "/posts/" + this.param.id,
+      //   data: JSON.stringify(params)
+      // }).then(() => {
+      //   alert("성공적으로 수정되었습니다.")
+      //   this.handleService()
+      // }).catch(err => {
+      //   alert(err.response.data)
+      // })
       api({
         url: "/posts/" + this.param.id,
         method: 'put',
