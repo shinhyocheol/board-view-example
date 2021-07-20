@@ -106,9 +106,12 @@ export default {
       posts: {}
     }
   },
-  mounted () {
-    console.log(this.memberId)
+  created () {
+    console.log("vue component dom", this.$el)
     this.handleService()
+  },
+  mounted () {
+    console.log("vue component dom", this.$el)
   },
   methods: {
     handleService() {
@@ -124,7 +127,6 @@ export default {
     getPosts() {
       api.get("/posts/" + this.param.id).then(res => {
         this.posts = res.data
-        console.log(this.posts)
       }).catch(err => {
         console.log(err)
       })

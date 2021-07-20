@@ -70,7 +70,7 @@ export default {
       return this.cnt
     }
   },
-  mounted () {
+  created () {
     this.handleService()
   },
   methods: {
