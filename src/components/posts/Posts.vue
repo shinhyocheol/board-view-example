@@ -1,8 +1,8 @@
 <template>
-  <div class="container">
+  <!-- <div class="container">
       <div class="card shadow-lg">
         <div class="card-body">
-          <Table 
+          <DataTable 
             :list="list"
             :cnt="totalCnt"
             :getData="getPosts"
@@ -34,9 +34,10 @@
                 </router-link>
               </td>
             </template> 
-          </Table>
+          </DataTable>
         </div>
       </div>
+
 
       <div class="row mt-3 float-right">
         <div class="col-auto">
@@ -46,16 +47,19 @@
           </router-link>
         </div>
       </div>
-
+  </div> -->
+  <div class="container">
+      <Article />
   </div>
 </template>
 
 <script>
-import Table from '@/components/layout/Table'
+// import DataTable from '@/components/layout/DataTable'
+import Article from '@/components/layout/Article'
 import api from '@/api/index.js'
 export default {
   name: 'Posts',
-  components: {Table},
+  components: {Article},
   data () {
     return {
       posts: [],
