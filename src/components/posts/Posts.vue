@@ -1,5 +1,6 @@
 <template>
-  <!-- <div class="container">
+  <!-- 
+    <div class="container">
       <div class="card shadow-lg">
         <div class="card-body">
           <DataTable 
@@ -47,7 +48,8 @@
           </router-link>
         </div>
       </div>
-  </div> -->
+    </div> 
+  -->
   <div class="container">
     <div class="row">
       <Article
