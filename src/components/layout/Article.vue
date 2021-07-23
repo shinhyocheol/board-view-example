@@ -1,38 +1,61 @@
 <template>
-  <div class="card-columns">
+  
+    <div class="col-sm-4">
+      <div class="card shadow-lg">
 
-    <div class="card shadow-lg">
-      <img class="card-img-top" src="/img/spring-boot.png" alt="spring-boot">
-      <div class="card-body">
-        <h5 class="card-title">Spring Boot</h5>
-        <span class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</span>
-        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-      </div>
-    </div>
+        <div class="bg-image ripple" data-mdb-ripple-color="light">
+          <img 
+            class="card-img-top w-100" 
+            :src="thumbnails[getRandom()]"
+          />
+          <a href="#!">
+            <div class="mask" style="background-color: rgba(0, 0, 0, 0.0)">
+              <div class="d-flex justify-content-center align-items-center h-100" />
+            </div>
+            <div class="hover-overlay">
+              <div class="mask" style="background-color: rgba(0, 0, 0, 0.5)"></div>
+            </div>
+          </a>
+        </div>
 
-    <div class="card shadow-lg">
-      <img class="card-img-top" src="/img/vue-js.png" alt="vue-js">
-      <div class="card-body">
-        <h5 class="card-title">Vue</h5>
-        <span class="card-text">This card has supporting text below as a natural lead-in to additional content.</span>
-        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-      </div>
-    </div>
-
-    <div class="card shadow-lg">
-      <img class="card-img-top" src="/img/mysql.png" alt="mysql">
-      <div class="card-body">
-        <h5 class="card-title">MySQL</h5>
-        <span class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</span>
-        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        <div class="card-body">
+          <h5 class="card-title">
+            {{item.title}}
+          </h5>
+          <span class="card-text">
+            {{item.content}}
+          </span>
+          <p class="card-text">
+            <small class="text-muted">
+              {{item.createdDate}}
+            </small>
+          </p>
+        </div>
       </div>
     </div>
     
-  </div>
 </template>
 <script>
 export default {
-  name: "Article"
+  name: "Article",
+  props: ['item'],
+  data () {
+    return {
+      thumbnails: [
+        "/img/spring-boot.png",
+        "/img/vue-js.png",
+        "/img/mysql.png",
+        "/img/js.png",
+        "/img/code.png",
+        "/img/react.png"
+      ]
+    }
+  },
+  methods: {
+    getRandom() {
+      return Math.floor(Math.random() * 6)
+    }
+  }
 }
 </script>
 <style scoped>
@@ -42,5 +65,8 @@ export default {
   white-space: nowrap; 
   overflow: hidden; 
   text-overflow: ellipsis;
+}
+.col-sm-4{
+  margin-bottom:15px;
 }
 </style>

@@ -49,29 +49,48 @@
       </div>
   </div> -->
   <div class="container">
-      <Article />
+    <div class="row">
+      <Article
+        v-for="(item, index) in posts" 
+        :key="index"
+        :item="item"
+      />
+    </div>
+    <pagination 
+      v-model="page" 
+      :records="cnt" 
+      :per-page="6" 
+      @paginate="pagingHandle"
+    />
   </div>
 </template>
 
 <script>
 // import DataTable from '@/components/layout/DataTable'
+import Pagination from 'v-pagination-3'
 import Article from '@/components/layout/Article'
 import api from '@/api/index.js'
 export default {
   name: 'Posts',
-  components: {Article},
+  components: {Article, Pagination},
   data () {
     return {
       posts: [],
+      page: 1,
       cnt : 0
     }
   },
-  computed: {
-    list () {
-      return this.posts
-    },
-    totalCnt () {
-      return this.cnt
+  // computed: {
+  //   list () {
+  //     return this.posts
+  //   },
+  //   totalCnt () {
+  //     return this.cnt
+  //   }
+  // },
+  watch: {
+    posts() {
+      this.count = this.cnt
     }
   },
   created () {
@@ -80,7 +99,7 @@ export default {
   methods: {
     handleService() {
       var params = new URLSearchParams()
-      params.append("page", 1)
+      params.append("page", this.page)
       this.getPosts(params)
     },
     getPosts(params) {
@@ -92,6 +111,11 @@ export default {
         alert(err)
       })
     },
+    pagingHandle (currentPage) {
+      const params = new URLSearchParams()
+      params.append("page", currentPage)
+      this.getPosts(params)
+    }
   }
 }
 </script>
