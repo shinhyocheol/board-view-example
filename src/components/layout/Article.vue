@@ -4,11 +4,12 @@
       <div class="card shadow-lg">
 
         <div class="bg-image ripple" data-mdb-ripple-color="light">
+          <!-- 썸네일은 자체적으로 가지고 있는 파일들을 랜덤으로 표출 -->
           <img 
             class="card-img-top w-100" 
             :src="thumbnails[getRandom()]"
           />
-
+          <!-- 동적 라우트 매칭 -->
           <router-link 
             :to="`/posts/${item.id}`">
             <div class="mask" style="background-color: rgba(0, 0, 0, 0.0)">
