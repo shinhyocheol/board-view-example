@@ -12,11 +12,17 @@
           <!-- 동적 라우트 매칭 -->
           <router-link 
             :to="`/posts/${item.id}`">
-            <div class="mask" style="background-color: rgba(0, 0, 0, 0.0)">
+            <div 
+              class="mask" 
+              style="background-color: rgba(0, 0, 0, 0.0)"
+            >
               <div class="d-flex justify-content-center align-items-center h-100" />
             </div>
             <div class="hover-overlay">
-              <div class="mask" style="background-color: rgba(0, 0, 0, 0.5)"></div>
+              <div 
+                class="mask" 
+                style="background-color: rgba(0, 0, 0, 0.5)"
+              />
             </div>
           </router-link>
         </div>
