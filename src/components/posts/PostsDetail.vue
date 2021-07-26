@@ -102,7 +102,7 @@ export default {
     return {
       disabled: true,
       memberId: store.state.id,
-      param: this.$route.query,
+      param: this.$route.params,
       posts: {}
     }
   },

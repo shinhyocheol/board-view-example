@@ -8,20 +8,16 @@
             class="card-img-top w-100" 
             :src="thumbnails[getRandom()]"
           />
-          <!-- <a href="#!"> -->
-            <router-link 
-              :to="{
-                path:'/posts/detail',
-                query: { id: item.id }
-              }">
-              <div class="mask" style="background-color: rgba(0, 0, 0, 0.0)">
-                <div class="d-flex justify-content-center align-items-center h-100" />
-              </div>
-              <div class="hover-overlay">
-                <div class="mask" style="background-color: rgba(0, 0, 0, 0.5)"></div>
-              </div>
-            </router-link>
-          <!-- </a> -->
+
+          <router-link 
+            :to="`/posts/${item.id}`">
+            <div class="mask" style="background-color: rgba(0, 0, 0, 0.0)">
+              <div class="d-flex justify-content-center align-items-center h-100" />
+            </div>
+            <div class="hover-overlay">
+              <div class="mask" style="background-color: rgba(0, 0, 0, 0.5)"></div>
+            </div>
+          </router-link>
         </div>
 
         <div class="card-body">
