@@ -182,28 +182,28 @@ export default {
   },
   methods: {
     join() {
-        const params = {
-            "email": this.id,               // 아이디
-            "password": this.password,      // 비밀번호
-            "name": this.name,              // 이름
-            "nickname": this.nickname,      // 닉네임
-            "mobile": this.mobile           // 연락처
-        }
-        this.axios.post("http://localhost:8080/signup", JSON.stringify(params), {
-            headers: { 'content-type': 'application/json' }
-        }).then(() => {
-            alert("회원가입이 정상적으로 완료되었습니다.")
-            // 회원가입이 정상적으로 이루어진 시점에서 해당 아이디와 비밀번호를 가지고 바로 로그인 요청
-            let loginId = this.id
-            let loginPw = this.password
-            // 로그인 API 통신요청
-            this.store.dispatch('login', {loginId, loginPw})
-            .then(() => {this.router.push(this.$routePath + "/posts")})
-            .catch(e => { alert("로그인 요청에 문제가 발생했습니다.\nmsg:" + e.response.data)})
-        }).catch(e => {
-          alert("데이터 등록에 문제가 발생했습니다.")
-          console.log("error : " + e.response.data)
-        })
+      const params = {
+        "email": this.id,               // 아이디
+        "password": this.password,      // 비밀번호
+        "name": this.name,              // 이름
+        "nickname": this.nickname,      // 닉네임
+        "mobile": this.mobile           // 연락처
+      }
+      this.axios.post("http://localhost:8080/signup", JSON.stringify(params), {
+          headers: { 'content-type': 'application/json' }
+      }).then(() => {
+        alert("회원가입이 정상적으로 완료되었습니다.")
+        // 회원가입이 정상적으로 이루어진 시점에서 해당 아이디와 비밀번호를 가지고 바로 로그인 요청
+        let loginId = this.id
+        let loginPw = this.password
+        // 로그인 API 통신요청
+        this.store.dispatch('login', {loginId, loginPw})
+        .then(() => {this.router.push(this.$routePath + "/posts")})
+        .catch(e => { alert("로그인 요청에 문제가 발생했습니다.\nmsg:" + e.response.data)})
+      }).catch(e => {
+        alert("데이터 등록에 문제가 발생했습니다.")
+        console.log("error : " + e.response.data)
+      })
     }
   }
 }
