@@ -201,8 +201,17 @@ export default {
         .then(() => {this.router.push(this.$routePath + "/posts")})
         .catch(e => { alert("로그인 요청에 문제가 발생했습니다.\nmsg:" + e.response.data)})
       }).catch(e => {
-        alert("데이터 등록에 문제가 발생했습니다.")
-        console.log("error : " + e.response.data)
+        switch (e.response.status) {
+          case 400: 
+            alert("잘못된 요청방식입니다.\nmsg: "+ e.response.data['msg'])
+            break
+          case 409:
+            alert("중복된 정보가 확인됩니다.\nmsg: " + e.response.data['msg'])
+            break
+          case 500:
+            alert("서버에 문제가 발생했습니다.\nmsg: " + e.response.data['msg'])
+            break
+        }
       })
     }
   }
