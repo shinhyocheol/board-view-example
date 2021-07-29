@@ -7,7 +7,7 @@
         :item="item"
       />
     </div>
-    <pagination 
+    <pagination
       v-model="page" 
       :records="cnt" 
       :per-page="6" 

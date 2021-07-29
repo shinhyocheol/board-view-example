@@ -9,7 +9,7 @@
           <div class="navbar-nav">
             <a class="nav-item nav-link" href="#">Home</a>
             <a class="nav-item nav-link" href="#">Posts</a>
-            <a class="nav-item nav-link" href="#">Chart</a>
+            <a class="nav-item nav-link" href="#">Table</a>
             <a class="nav-item nav-link" href="#">Etc</a>
           </div>
         </div>
