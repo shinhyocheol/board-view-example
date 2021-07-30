@@ -18,9 +18,7 @@ import App from './App.vue'
 // VMdEditor.use(githubTheme, {
 //   Hljs: hljs,
 // });
-
 // import { editor } from './editor/index.js'
-
 sync(store, router)
 
 // Create Vue Instance

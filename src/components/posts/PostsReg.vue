@@ -15,18 +15,24 @@
               placeholder="글 제목을 입력해주세요."/>
           </div>
 
-          <!-- <div class="form-group">
-            <label for="postsContent">본문</label>
-            <textarea 
-              rows="10"
-              class="form-control" 
-              id="postsContent"
-              v-model="content"
-              placeholder="본문내용을 입력해주세요." />
-          </div> -->
-          <Editor 
-            v-model="content" 
-            height="400px"
+          <!-- 
+            <div class="form-group">
+              <label for="postsContent">본문</label>
+              <textarea 
+                rows="10"
+                class="form-control" 
+                id="postsContent"
+                v-model="content"
+                placeholder="본문내용을 입력해주세요." />
+            </div> 
+          -->
+
+          <editor
+            :initialValue="content"
+            :options="editorOptions"
+            height="500px"
+            initialEditType="wysiwyg"
+            previewStyle="vertical"
           />
 
         </form>
@@ -62,14 +68,18 @@ import api from '@/api/index.js'
 export default {
   name: "PostsReg",
   components: {
-    Editor
+    editor: Editor
   },
   data () {
     return {
       disabled: true,
       text: '',
       title: '',
-      content: ''
+      content: 'This is initialValue.',
+      editorOptions: {
+        hideModeSwitch: true
+      }
+
     }
   },
   methods: {

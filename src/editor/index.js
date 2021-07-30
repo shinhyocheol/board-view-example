@@ -5,13 +5,8 @@ import '@kangc/v-md-editor/lib/theme/style/github.css';
 import koKR from '@kangc/v-md-editor/lib/lang/ko-KR';
 import hljs from 'highlight.js';
 
-// VMdEditor.lang.use('ko-KR', koKR);
-// VMdEditor.use(githubTheme, {
-//   Hljs: hljs,
-// });
-
-const editor = VMdEditor.lang.use('ko-KR', koKR);
-editor.use(githubTheme, {
+VMdEditor.lang.use('ko-KR', koKR);
+VMdEditor.use(githubTheme, {
   Hljs: hljs,
 });
 
