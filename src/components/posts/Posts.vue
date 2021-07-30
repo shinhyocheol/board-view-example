@@ -7,12 +7,27 @@
         :item="item"
       />
     </div>
-    <pagination
-      v-model="page" 
-      :records="cnt" 
-      :per-page="6" 
-      @paginate="pagingHandle"
-    />
+
+    <div class="row mt-3 float-left">
+      <pagination
+        v-model="page" 
+        :records="cnt" 
+        :per-page="6" 
+        @paginate="pagingHandle"
+      />
+    </div>
+    
+    <div class="row mt-3 float-right">
+      <div class="col-auto">
+        <router-link 
+          :to="{path:'/posts/reg'}"
+          class="btn btn-primary"
+        >
+          <i class="fa fa-edit" />
+        </router-link>
+      </div>
+    </div>
+
   </div>
 </template>
 

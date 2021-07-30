@@ -15,7 +15,7 @@
               placeholder="글 제목을 입력해주세요."/>
           </div>
 
-          <div class="form-group">
+          <!-- <div class="form-group">
             <label for="postsContent">본문</label>
             <textarea 
               rows="10"
@@ -23,7 +23,11 @@
               id="postsContent"
               v-model="content"
               placeholder="본문내용을 입력해주세요." />
-          </div>
+          </div> -->
+          <Editor 
+            v-model="content" 
+            height="400px"
+          />
 
         </form>
       </div>
@@ -51,12 +55,21 @@
   </div>
 </template>
 <script>
+import '@toast-ui/editor/dist/toastui-editor.css';
+import { Editor } from '@toast-ui/vue-editor';
 import api from '@/api/index.js'
+
 export default {
   name: "PostsReg",
+  components: {
+    Editor
+  },
   data () {
     return {
-      disabled: true
+      disabled: true,
+      text: '',
+      title: '',
+      content: ''
     }
   },
   methods: {
@@ -74,6 +87,6 @@ export default {
         alert(err.response.data)
       })
     }
-  } 
+  }
 }
 </script>
