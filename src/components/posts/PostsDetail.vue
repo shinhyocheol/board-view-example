@@ -19,9 +19,16 @@
               :disabled="disabled" />
           </div>
 
-          <!-- 텍스트 에디터 -->
+          <!-- 텍스트 미리보기(읽기모드) -->
+          <v-md-preview
+            v-if="disabled"
+            :text="posts.content"
+            height="400px"
+          />
+
+          <!-- 텍스트 에디터(쓰기모드) -->
           <v-md-editor
-            :disabled="disabled"
+            v-if="!disabled"
             v-model="posts.content"
             height="400px"
           />

@@ -5,7 +5,8 @@ import { router } from './router/index.js'
 import { sync } from 'vuex-router-sync'
 
 import axios from 'axios'
-import VMdEditor from './editor/index.js'
+import VMdEditor from './v-md-editor/index.js'
+import VMdPreview from './v-md-editor/preview/index.js'
 
 import App from './App.vue'
 sync(store, router)
@@ -15,6 +16,7 @@ const app = createApp(App);
 app.use(store);
 app.use(router);
 app.use(VMdEditor);
+app.use(VMdPreview);
 
 app.mount('#app');
 

@@ -15,18 +15,7 @@
               placeholder="글 제목을 입력해주세요."/>
           </div>
 
-          <!-- 
-            <div class="form-group">
-              <label for="postsContent">본문</label>
-              <textarea 
-                rows="10"
-                class="form-control" 
-                id="postsContent"
-                v-model="content"
-                placeholder="본문내용을 입력해주세요." />
-            </div> 
-          -->
-
+          <!-- 텍스트 에디터 -->
           <v-md-editor
             v-model="content"
             height="400px"
