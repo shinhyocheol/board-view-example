@@ -27,12 +27,9 @@
             </div> 
           -->
 
-          <editor
-            :initialValue="content"
-            :options="editorOptions"
-            height="500px"
-            initialEditType="wysiwyg"
-            previewStyle="vertical"
+          <v-md-editor
+            v-model="content"
+            height="400px"
           />
 
         </form>
@@ -41,9 +38,11 @@
     
     <div class="row mt-3 float-left">
       <div class="col-auto">
-        <router-link :to="{path:'/posts'}"
-                      class="btn btn-primary">
-          <i class="fa">목록으로</i>
+        <router-link 
+          :to="{path:'/posts'}"
+          class="btn btn-primary"
+        >
+          <i class="fa fa-list" />
         </router-link>
       </div>
     </div>
@@ -53,23 +52,21 @@
         <button 
           class="btn btn-success" 
           type="button"
-          @click="regPosts()">
-          <i class="fa">저장</i>
+          @click="regPosts()"
+        >
+          <i class="fa fa-save" />
         </button>
       </div>
     </div>
   </div>
 </template>
 <script>
-import '@toast-ui/editor/dist/toastui-editor.css';
-import { Editor } from '@toast-ui/vue-editor';
+// import '@toast-ui/editor/dist/toastui-editor.css';
+// import { Editor } from '@toast-ui/vue-editor';
 import api from '@/api/index.js'
 
 export default {
   name: "PostsReg",
-  components: {
-    editor: Editor
-  },
   data () {
     return {
       disabled: true,
