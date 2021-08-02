@@ -41,10 +41,11 @@
     <div class="row mt-3 float-left">
       <div class="col-auto">
         <router-link 
+          v-if="disabled"
           :to="{path:'/posts'}"
-          class="btn btn-primary"
+          class="btn btn-info"
         >
-          <i class="fa">목록으로</i>
+          <i class="fa fa-list" />
         </router-link>
       </div>
     </div>
@@ -55,9 +56,11 @@
       <div class="col-auto">
         <button 
           v-if="posts.memberId === memberId"
-          class="btn btn-success" 
+          class="btn btn-primary" 
           type="button"
-          @click="setMode()">수정
+          @click="setMode()"
+        >
+          <i class="fa fa-edit" />
         </button>
       </div>
 
@@ -66,7 +69,9 @@
           v-if="posts.memberId === memberId"
           class="btn btn-danger" 
           type="button"
-          @click="delPosts()">삭제
+          @click="delPosts()"
+        >
+          <i class="fa fa-trash" />
         </button>
       </div>
 
@@ -79,15 +84,19 @@
         <button 
           class="btn btn-success" 
           type="button"
-          @click="setPosts()">저장
+          @click="setPosts()"
+        >
+          <i class="fa fa-save" />
         </button>
       </div>
       
       <div class="col-auto">
         <button 
-          class="btn btn-danger" 
+          class="btn btn-warning" 
           type="button"
-          @click="readMode()">취소
+          @click="readMode()"
+        >
+          <i class="fa fa-times" />
         </button>
       </div>
 

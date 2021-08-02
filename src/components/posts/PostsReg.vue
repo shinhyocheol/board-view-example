@@ -29,7 +29,7 @@
       <div class="col-auto">
         <router-link 
           :to="{path:'/posts'}"
-          class="btn btn-primary"
+          class="btn btn-info"
         >
           <i class="fa fa-list" />
         </router-link>
