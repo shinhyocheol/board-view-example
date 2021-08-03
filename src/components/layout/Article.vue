@@ -1,6 +1,6 @@
 <template>
   
-    <div class="col-sm-4">
+    <div class="col-sm-3">
       <div class="card shadow-lg">
 
         <div class="bg-image ripple" data-mdb-ripple-color="light">
@@ -75,7 +75,7 @@ export default {
   overflow: hidden; 
   text-overflow: ellipsis;
 }
-.col-sm-4{
-  margin-bottom:15px;
+.col-sm-3{
+  margin-bottom:10px;
 }
 </style>

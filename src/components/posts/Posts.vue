@@ -12,7 +12,7 @@
       <pagination
         v-model="page" 
         :records="cnt" 
-        :per-page="6" 
+        :per-page="8" 
         @paginate="pagingHandle"
       />
     </div>

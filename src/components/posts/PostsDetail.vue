@@ -2,39 +2,39 @@
   <div class="container">
     <div class="card shadow-lg">
       <div class="card-body">
-        <h5 class="card-title">게시글 상세</h5>
-        <p class="card-text">
-          <small class="text-muted">작성자 : {{posts.author}} ({{posts.createdDate}})</small>
-        </p>
 
+        <!-- 게시글 타이틀 -->
         <form>
           <div class="form-group">
-            <label for="postsTitle">제목</label>
+            <label v-if="disabled">
+              <h1>{{posts.title}}</h1>
+            </label>
             <input 
+              v-if="!disabled"
               type="text" 
               class="form-control" 
-              id="postsTitle" 
-              placeholder="글 제목을 입력해주세요."
+              placeholder="제목을 입력해주세요."
               v-model="posts.title"
-              :disabled="disabled" />
+            />
           </div>
-
           <!-- 텍스트 미리보기(읽기모드) -->
           <v-md-preview
             v-if="disabled"
             :text="posts.content"
             height="400px"
           />
-
           <!-- 텍스트 에디터(쓰기모드) -->
           <v-md-editor
             v-if="!disabled"
             v-model="posts.content"
             height="400px"
           />
-
         </form>
-
+        <p class="text-right">
+          <small class="text-muted">
+            {{posts.author}} ({{posts.createdDate}})
+          </small>
+        </p>
       </div>
     </div>
 
@@ -167,3 +167,12 @@ export default {
   } 
 }
 </script>
+<style scoped>
+form{
+  padding: 30px;
+  min-height: 500px;
+}
+.form-group{
+  border-bottom: 1px solid #ebebeb;
+}
+</style>

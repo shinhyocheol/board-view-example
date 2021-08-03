@@ -2,9 +2,8 @@
   <div class="container">
     <div class="card">
       <div class="card-body">
-        <h5 class="card-title">새로운 글 등록</h5>
         <form>
-          
+          <!-- 게시글 타이틀 -->
           <div class="form-group">
             <label for="postsTitle">제목</label>
             <input 
@@ -12,10 +11,12 @@
               class="form-control" 
               id="postsTitle" 
               v-model="title"
-              placeholder="글 제목을 입력해주세요."/>
+              placeholder="글 제목을 입력해주세요."
+            />
           </div>
 
           <!-- 텍스트 에디터 -->
+          <label>내용</label>
           <v-md-editor
             v-model="content"
             height="400px"
@@ -61,7 +62,7 @@ export default {
       disabled: true,
       text: '',
       title: '',
-      content: 'This is initialValue.',
+      content: '',
       editorOptions: {
         hideModeSwitch: true
       }

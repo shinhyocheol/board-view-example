@@ -1,16 +1,10 @@
 <template>
-  <div class="wrapper">
+  <div>
     
     <!-- Header -->
     <Header />
-
-    <!-- Side Bar -->
-    <!-- <LeftBar />  -->
-
     <!-- Body -->
-    <div class="content-view">
-      <router-view></router-view>
-    </div>
+    <RouterView />
 
   </div>
 </template>
@@ -22,10 +16,3 @@ export default {
   name: "NavBar"
 }
 </script>
-<style scoped>
-  .content-view {
-    /* width: calc(100% - 250px); */
-    /* min-width: 750px; */
-    /* float: right; */
-  }
-</style>
