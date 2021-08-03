@@ -1,5 +1,31 @@
 <template>
   <div class="container">
+
+    <div class="customBtnRow">
+      <div class="row mt-3 float-left">
+        <div class="col-auto">
+          <router-link 
+            :to="{path:'/posts'}"
+            class="btn btn-info"
+          >
+            <i class="fa fa-list" />
+          </router-link>
+        </div>
+      </div>
+
+      <div class="row mt-3 float-right">
+        <div class="col-auto">
+          <button 
+            class="btn btn-success" 
+            type="button"
+            @click="regPosts()"
+          >
+            <i class="fa fa-save" />
+          </button>
+        </div>
+      </div>
+    </div>
+
     <div class="card">
       <div class="card-body">
         <form>
@@ -26,28 +52,6 @@
       </div>
     </div>
     
-    <div class="row mt-3 float-left">
-      <div class="col-auto">
-        <router-link 
-          :to="{path:'/posts'}"
-          class="btn btn-info"
-        >
-          <i class="fa fa-list" />
-        </router-link>
-      </div>
-    </div>
-
-    <div class="row mt-3 float-right">
-      <div class="col-auto">
-        <button 
-          class="btn btn-success" 
-          type="button"
-          @click="regPosts()"
-        >
-          <i class="fa fa-save" />
-        </button>
-      </div>
-    </div>
   </div>
 </template>
 <script>
@@ -85,3 +89,10 @@ export default {
   }
 }
 </script>
+<style scoped>
+.customBtnRow {
+  float:left; 
+  width:100%; 
+  margin-bottom:20px;
+}
+</style>

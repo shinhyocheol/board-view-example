@@ -1,5 +1,74 @@
 <template>
+  
   <div class="container">
+    
+    <div class="customBtnRow">
+      <div class="row mt-3 float-left">
+        <div class="col-auto">
+          <router-link 
+            v-if="disabled"
+            :to="{path:'/posts'}"
+            class="btn btn-info"
+          >
+            <i class="fa fa-list" />
+          </router-link>
+        </div>
+      </div>
+
+      <div 
+        class="row mt-3 float-right"
+        v-if="disabled"
+      >
+        <div class="col-auto">
+          <button 
+            v-if="posts.memberId === memberId"
+            class="btn btn-primary" 
+            type="button"
+            @click="setMode()"
+          >
+            <i class="fa fa-edit" />
+          </button>
+        </div>
+
+        <div class="col-auto">
+          <button 
+            v-if="posts.memberId === memberId"
+            class="btn btn-danger" 
+            type="button"
+            @click="delPosts()"
+          >
+            <i class="fa fa-trash" />
+          </button>
+        </div>
+
+      </div>
+
+      <div 
+        class="row mt-3 float-right"
+        v-if="!disabled"
+      >
+        <div class="col-auto">
+          <button 
+            class="btn btn-success" 
+            type="button"
+            @click="setPosts()"
+          >
+            <i class="fa fa-save" />
+          </button>
+        </div>
+        
+        <div class="col-auto">
+          <button 
+            class="btn btn-warning" 
+            type="button"
+            @click="readMode()"
+          >
+            <i class="fa fa-times" />
+          </button>
+        </div>
+      </div>
+    </div>
+
     <div class="card shadow-lg">
       <div class="card-body">
 
@@ -38,69 +107,6 @@
       </div>
     </div>
 
-    <div class="row mt-3 float-left">
-      <div class="col-auto">
-        <router-link 
-          v-if="disabled"
-          :to="{path:'/posts'}"
-          class="btn btn-info"
-        >
-          <i class="fa fa-list" />
-        </router-link>
-      </div>
-    </div>
-
-    <div class="row mt-3 float-right"
-          v-if="disabled">
-
-      <div class="col-auto">
-        <button 
-          v-if="posts.memberId === memberId"
-          class="btn btn-primary" 
-          type="button"
-          @click="setMode()"
-        >
-          <i class="fa fa-edit" />
-        </button>
-      </div>
-
-      <div class="col-auto">
-        <button 
-          v-if="posts.memberId === memberId"
-          class="btn btn-danger" 
-          type="button"
-          @click="delPosts()"
-        >
-          <i class="fa fa-trash" />
-        </button>
-      </div>
-
-    </div>
-
-    <div class="row mt-3 float-right"
-        v-if="!disabled">
-      
-      <div class="col-auto">
-        <button 
-          class="btn btn-success" 
-          type="button"
-          @click="setPosts()"
-        >
-          <i class="fa fa-save" />
-        </button>
-      </div>
-      
-      <div class="col-auto">
-        <button 
-          class="btn btn-warning" 
-          type="button"
-          @click="readMode()"
-        >
-          <i class="fa fa-times" />
-        </button>
-      </div>
-
-    </div>
   </div>
 </template>
 <script>
@@ -170,9 +176,14 @@ export default {
 <style scoped>
 form{
   padding: 30px;
-  min-height: 500px;
+  min-height: 300px;
 }
 .form-group{
   border-bottom: 1px solid #ebebeb;
+}
+.customBtnRow {
+  float:left; 
+  width:100%; 
+  margin-bottom:20px;
 }
 </style>
