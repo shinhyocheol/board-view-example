@@ -3,7 +3,7 @@
     <div class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
       <div class="container">
         <a class="navbar-brand" href="#">
-            <strong>자유로운공간</strong>
+            <strong>공간</strong>
         </a>
         <div class="collapse navbar-collapse" id="navbarNav">
           <div class="navbar-nav">

@@ -51,8 +51,6 @@
   </div>
 </template>
 <script>
-// import '@toast-ui/editor/dist/toastui-editor.css';
-// import { Editor } from '@toast-ui/vue-editor';
 import api from '@/api/index.js'
 
 export default {
