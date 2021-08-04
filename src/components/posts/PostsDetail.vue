@@ -107,10 +107,10 @@
       </div>
     </div>
 
-    <div 
-      class="card shadow-lg" 
-      style="margin-top:10px;"
-    >
+    <Comment 
+      :item="comments"
+    />
+    <!-- <div class="card shadow-lg commentBox">
       <div class="card-body">
         <div class="commentAreaField">
           <p class="commentCountTxt">0개의 댓글</p>
@@ -125,32 +125,40 @@
           />
         </div>
         <div class="commentListField">
-          댓글목록
+          <div class="commentRow">
+            <div class="commentRowHead"
+                  style="padding:10px;">
+              <img style="width:50px; height:50px; float:left;" />
+              <div style="padding-left:15px; float:left; color:rgb(52, 58, 64);">
+                <p style="margin-bottom:0px; font-weight: bold;">nickname</p>
+                <p style="font-size: 0.875rem;">2021.08.04</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
   </div>
 </template>
 <script>
 import api from '@/api/index.js'
 import { store } from '@/store/index.js'
+import Comment from '@/components/posts/comment/Comment.vue'
 export default {
   name: "PostsDetail",
+  components: { Comment },
   data () {
     return {
       disabled: true,
       memberId: store.state.id,
       param: this.$route.params,
-      posts: {}
+      posts: {},
+      comments: []
     }
   },
   created () {
-    console.log("vue component dom", this.$el)
     this.handleService()
-  },
-  mounted () {
-    console.log("vue component dom", this.$el)
   },
   methods: {
     handleService() {
@@ -166,6 +174,7 @@ export default {
     getPosts() {
       api.get("/posts/" + this.param.id).then(res => {
         this.posts = res.data
+        this.comments = this.posts.comments
       }).catch(err => {
         console.log(err)
       })
@@ -208,41 +217,5 @@ form{
   float:left; 
   width:100%; 
   margin-bottom:20px;
-}
-.commentAreaField {
-  width: 100%;
-  height: auto;
-  float: left;
-  margin-bottom: 15px;
-}
-.commentListField {
-  width: 100%;
-  height: auto;
-  float: left;
-}
-.commentCountTxt{
-  color: rgba(78, 82, 78, 0.445);
-}
-.commentArea{
-  height: 70px;
-  resize: none;
-  padding: 1rem 1rem 1.5rem;
-  outline: none;
-  border: 1px solid rgb(233, 236, 239);
-  margin-bottom: 1.5rem;
-  width: 100%;
-  border-radius: 4px;
-  min-height: 6.125rem;
-  font-size: 1rem;
-  color: rgb(33, 37, 41);
-  line-height: 1.75;
-}
-.commentSubmitBtn {
-  background-color:rgb(18, 184, 134); 
-  color:#fff; 
-  border:0; 
-  border-radius:3px; 
-  margin-top:5px;
-  padding:5px;
 }
 </style>
