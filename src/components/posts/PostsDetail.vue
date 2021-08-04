@@ -107,6 +107,29 @@
       </div>
     </div>
 
+    <div 
+      class="card shadow-lg" 
+      style="margin-top:10px;"
+    >
+      <div class="card-body">
+        <div class="commentAreaField">
+          <p class="commentCountTxt">0개의 댓글</p>
+          <textarea
+            class="commentArea"
+            placeholder="댓글을 작성하세요."
+          />
+          <button
+            type="button"
+            class="commentSubmitBtn float-right shadow-lg"
+            v-text="'댓글등록'"
+          />
+        </div>
+        <div class="commentListField">
+          댓글목록
+        </div>
+      </div>
+    </div>
+
   </div>
 </template>
 <script>
@@ -185,5 +208,41 @@ form{
   float:left; 
   width:100%; 
   margin-bottom:20px;
+}
+.commentAreaField {
+  width: 100%;
+  height: auto;
+  float: left;
+  margin-bottom: 15px;
+}
+.commentListField {
+  width: 100%;
+  height: auto;
+  float: left;
+}
+.commentCountTxt{
+  color: rgba(78, 82, 78, 0.445);
+}
+.commentArea{
+  height: 70px;
+  resize: none;
+  padding: 1rem 1rem 1.5rem;
+  outline: none;
+  border: 1px solid rgb(233, 236, 239);
+  margin-bottom: 1.5rem;
+  width: 100%;
+  border-radius: 4px;
+  min-height: 6.125rem;
+  font-size: 1rem;
+  color: rgb(33, 37, 41);
+  line-height: 1.75;
+}
+.commentSubmitBtn {
+  background-color:rgb(18, 184, 134); 
+  color:#fff; 
+  border:0; 
+  border-radius:3px; 
+  margin-top:5px;
+  padding:5px;
 }
 </style>
