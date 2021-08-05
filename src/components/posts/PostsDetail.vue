@@ -1,6 +1,6 @@
 <template>
   
-  <div class="container">
+  <div class="container" style="padding-bottom:50px;">
     
     <div class="customBtnRow">
       <div class="row mt-3 float-left">
@@ -110,34 +110,6 @@
     <Comment 
       :item="comments"
     />
-    <!-- <div class="card shadow-lg commentBox">
-      <div class="card-body">
-        <div class="commentAreaField">
-          <p class="commentCountTxt">0개의 댓글</p>
-          <textarea
-            class="commentArea"
-            placeholder="댓글을 작성하세요."
-          />
-          <button
-            type="button"
-            class="commentSubmitBtn float-right shadow-lg"
-            v-text="'댓글등록'"
-          />
-        </div>
-        <div class="commentListField">
-          <div class="commentRow">
-            <div class="commentRowHead"
-                  style="padding:10px;">
-              <img style="width:50px; height:50px; float:left;" />
-              <div style="padding-left:15px; float:left; color:rgb(52, 58, 64);">
-                <p style="margin-bottom:0px; font-weight: bold;">nickname</p>
-                <p style="font-size: 0.875rem;">2021.08.04</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> -->
 
   </div>
 </template>

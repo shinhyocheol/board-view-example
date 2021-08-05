@@ -17,27 +17,92 @@
         </div>
 
         <!-- 댓글 목록 요소 -->
-        <div class="commentListField">
-          <div class="commentRow">
+        <div 
+          class="commentListField"
+          v-for="(comment, i) in commentList" 
+          :key="i"
+        >
+          <div 
+            class="commentRow"
+            v-if="comment.depthNo === 0"
+          >
             
             <div class="commentRowHead">
               <img class="commentUserProfileImg" />
               <div class="commentUserInfo">
-                <p>nickname</p>
-                <p>2021.08.04</p>
+                <p>{{comment.memberNickname}}</p>
+                <p>{{comment.createdDate}}</p>
               </div>
             </div>
             
             <div class="commentRowBody">
-              <p>댓글내용댓글내용하하하하하하하댓글내용댓글내용하하하하하하하댓글내용댓글내용하하하하하하하댓글내용댓글내용하하하하하하하댓글내용댓글내용하하하하하하하댓글내용댓글내용하하하하하하하댓글내용댓글내용하하하하하하하</p>
+              <div class="clearBothWidth100">
+                <p>{{comment.comment}}</p>
+                
+                <div
+                  v-for="(reply, j) in commentList" 
+                  :key="j"
+                  class="innerCommentFieldBlock"
+                >
+                  <div
+                    v-if="reply.depthNo === 1 
+                    && comment.groupNo === reply.groupNo" 
+                    class="commentListField"
+                  >
+                    <div class="commentRow">
+                      <div class="commentRowHead">
+                        <img class="commentUserProfileImg" />
+                        <div class="commentUserInfo">
+                          <p>{{reply.memberNickname}}</p>
+                          <p>{{reply.createdDate}}</p>
+                        </div>
+                      </div>
+                      <div class="commentRowBody">
+                        <p>{{reply.comment}}</p>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
             </div>
 
-            <div class="commentRowBottom">
+            <div
+              class="replyShowBtn"
+            >
               <button 
+                v-if="!isShow"
                 class="replyShowBtn"
-                style="background-color:#fff; border:0px; color:rgb(52, 58, 64);"
-                v-text="'답글 등록'"
+                @click="replyShow()"
+                v-text="'펼치기'"
               />
+            </div>
+            <div 
+              class="commentRowBottom"
+              v-if="isShow"
+            >
+              <div 
+                class="commentAreaField" 
+                style="padding:0px 15px 0px;"
+              >
+                <textarea
+                  class="commentArea"
+                  placeholder="댓글을 작성하세요."
+                />
+
+                <button
+                  type="button"
+                  class="commentSubmitBtn float-right shadow-lg"
+                  v-text="'댓글등록'"
+                />
+                <button
+                  type="button"
+                  class="commentCancelBtn float-right shadow-lg"
+                  style="margin-right:10px;"
+                  v-text="'취소'"
+                  @click="replyHide()"
+                />
+              </div>
             </div>
 
           </div>
@@ -49,12 +114,33 @@
 <script>
 export default {
   name: "Comment",
-  props: ['item']
+  props: ['item'],
+  data() {
+    return {
+      isShow: false,
+      commentList: []
+    }
+  },
+  watch: {
+    item() {
+      this.commentList = this.item
+      console.log(this.commentList)
+    }
+  },
+  methods: {
+    replyShow() {
+      this.isShow = true
+    },
+    replyHide() {
+      this.isShow = false
+    }
+  }
 }
 </script>
 <style scoped>
 .commentBox {
   margin-top: 10px;
+  padding-bottom: 30px;
 }
 .commentAreaField {
   width: 100%;
@@ -78,7 +164,7 @@ export default {
   padding: 1rem 1rem 1.5rem;
   outline: none;
   border: 1px solid rgb(233, 236, 239);
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   width: 100%;
   border-radius: 4px;
   min-height: 6.125rem;
@@ -92,7 +178,15 @@ export default {
   border:0; 
   border-radius:3px; 
   margin-top:5px;
-  padding:5px;
+  padding:5px 15px 5px 15px;
+}
+.commentCancelBtn {
+  background-color:rgb(173, 181, 189);
+  color:#fff; 
+  border:0; 
+  border-radius:3px; 
+  margin-top:5px;
+  padding:5px 15px 5px 15px;
 }
 .commentRowHead{
   padding: 10px;
@@ -122,7 +216,27 @@ export default {
 }
 .commentRowBottom {
   color:rgb(52, 58, 64);
-  padding: 10px;
+  padding: 30px 10px 10px;
   display: flex;
+  width: calc(100% - 50px);
+  background-color: rgba(0, 0, 0, 0.016);
+  margin: auto;
+}
+.replyShowBtn{ 
+  display: block;
+  padding: 15px;
+}
+.replyShowBtn button {
+  background-color:#fff; 
+  border:0px; 
+  color:rgb(52, 58, 64);
+}
+.clearBothWidth100{
+  clear:both;
+  width: 100%;
+}
+.innerCommentFieldBlock {
+  padding:0px 15px 0px 15px; 
+  display:flex;
 }
 </style>
