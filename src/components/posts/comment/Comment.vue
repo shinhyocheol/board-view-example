@@ -4,7 +4,7 @@
 
         <!-- 댓글 입력창 요소 -->
         <div class="commentAreaField">
-          <p class="commentCountTxt">0개의 댓글</p>
+          <p class="commentCountTxt">총 {{commentList.length}}개의 댓글</p>
           <textarea
             class="commentArea"
             placeholder="댓글을 작성하세요."
@@ -17,95 +17,93 @@
         </div>
 
         <!-- 댓글 목록 요소 -->
-        <div 
-          class="commentListField"
-          v-for="(comment, i) in commentList" 
-          :key="i"
-        >
+        <div v-if="isShow">
           <div 
-            class="commentRow"
-            v-if="comment.depthNo === 0"
+            class="commentListField"
+            v-for="(comment, i) in commentList" 
+            :key="i"
           >
-            
-            <div class="commentRowHead">
-              <img class="commentUserProfileImg" />
-              <div class="commentUserInfo">
-                <p>{{comment.memberNickname}}</p>
-                <p>{{comment.createdDate}}</p>
+            <div 
+              class="commentRow"
+              v-if="comment.depthNo === 0"
+            >
+              <div class="commentRowHead">
+                <img class="commentUserProfileImg" />
+                <div class="commentUserInfo">
+                  <p>{{comment.memberNickname}}</p>
+                  <p>{{comment.createdDate}}</p>
+                </div>
               </div>
-            </div>
-            
-            <div class="commentRowBody">
-              <div class="clearBothWidth100">
-                <p>{{comment.comment}}</p>
-                
-                <div
-                  v-for="(reply, j) in commentList" 
-                  :key="j"
-                  class="innerCommentFieldBlock"
-                >
+              
+              <div class="commentRowBody">
+                <div class="clearBothWidth100">
+                  <p>{{comment.comment}}</p>
+                  
                   <div
-                    v-if="reply.depthNo === 1 
-                    && comment.groupNo === reply.groupNo" 
-                    class="commentListField"
+                    v-for="(reply, j) in commentList" 
+                    :key="j"
+                    class="innerCommentFieldBlock"
                   >
-                    <div class="commentRow">
-                      <div class="commentRowHead">
-                        <img class="commentUserProfileImg" />
-                        <div class="commentUserInfo">
-                          <p>{{reply.memberNickname}}</p>
-                          <p>{{reply.createdDate}}</p>
+                    <div
+                      v-if="reply.depthNo === 1 
+                      && comment.groupNo === reply.groupNo" 
+                      class="commentListField"
+                    >
+                      <div class="commentRow">
+                        <div class="commentRowHead">
+                          <img class="commentUserProfileImg" />
+                          <div class="commentUserInfo">
+                            <p>{{reply.memberNickname}}</p>
+                            <p>{{reply.createdDate}}</p>
+                          </div>
+                        </div>
+                        <div class="commentRowBody">
+                          <p>{{reply.comment}}</p>
                         </div>
                       </div>
-                      <div class="commentRowBody">
-                        <p>{{reply.comment}}</p>
-                      </div>
                     </div>
-                  </div>
 
+                  </div>
+                </div>
+              </div>
+              <div 
+                class="commentRowBottom"
+                v-if="isShow"
+              >
+                <div 
+                  class="commentAreaField" 
+                  style="padding:0px 15px 0px;"
+                >
+                  <textarea
+                    class="commentArea"
+                    placeholder="댓글을 작성하세요."
+                  />
+
+                  <button
+                    type="button"
+                    class="commentSubmitBtn float-right shadow-lg"
+                    v-text="'댓글등록'"
+                  />
+                  <button
+                    type="button"
+                    class="commentCancelBtn float-right shadow-lg"
+                    style="margin-right:10px;"
+                    v-text="'취소'"
+                    @click="replyHide()"
+                  />
                 </div>
               </div>
             </div>
-
-            <div
-              class="replyShowBtn"
-            >
-              <button 
-                v-if="!isShow"
-                class="replyShowBtn"
-                @click="replyShow()"
-                v-text="'펼치기'"
-              />
-            </div>
-            <div 
-              class="commentRowBottom"
-              v-if="isShow"
-            >
-              <div 
-                class="commentAreaField" 
-                style="padding:0px 15px 0px;"
-              >
-                <textarea
-                  class="commentArea"
-                  placeholder="댓글을 작성하세요."
-                />
-
-                <button
-                  type="button"
-                  class="commentSubmitBtn float-right shadow-lg"
-                  v-text="'댓글등록'"
-                />
-                <button
-                  type="button"
-                  class="commentCancelBtn float-right shadow-lg"
-                  style="margin-right:10px;"
-                  v-text="'취소'"
-                  @click="replyHide()"
-                />
-              </div>
-            </div>
-
           </div>
+        </div>
+
+        <div class="replyShowBtn">
+          <button 
+            v-if="!isShow"
+            class="replyShowBtn"
+            @click="replyShow()"
+            v-text="'펼치기'"
+          />
         </div>
 
       </div>
@@ -124,7 +122,6 @@ export default {
   watch: {
     item() {
       this.commentList = this.item
-      console.log(this.commentList)
     }
   },
   methods: {
