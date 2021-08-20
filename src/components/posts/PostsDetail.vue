@@ -107,7 +107,9 @@
       </div>
     </div>
 
-    <Comment 
+    <Comment
+      v-if="disabled"
+      :posts-id="param.id"
       :item="comments"
     />
 

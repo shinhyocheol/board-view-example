@@ -7,12 +7,14 @@
           <p class="commentCountTxt">총 {{commentList.length}}개의 댓글</p>
           <textarea
             class="commentArea"
+            v-model="newComment"
             placeholder="댓글을 작성하세요."
           />
           <button
             type="button"
             class="commentSubmitBtn float-right shadow-lg"
             v-text="'댓글등록'"
+            @click="regComment()"
           />
         </div>
 
@@ -97,7 +99,9 @@
           </div>
         </div>
 
-        <div class="replyShowBtn">
+        <div 
+          class="replyShowBtn"
+        >
           <button 
             v-if="!isShow"
             class="replyShowBtn"
@@ -110,12 +114,14 @@
     </div>
 </template>
 <script>
+import api from '@/api/index.js'
 export default {
   name: "Comment",
-  props: ['item'],
+  props: ['item', 'postsId', 'getHandler'],
   data() {
     return {
       isShow: false,
+      newComment: "",
       commentList: []
     }
   },
@@ -130,6 +136,23 @@ export default {
     },
     replyHide() {
       this.isShow = false
+    },
+    regComment() {
+      if (!this.newComment) {
+        alert("댓글을 입력해주시기 바랍니다.")
+        return false
+      }
+      let params = {
+        "postsRegno": this.postsId,
+        "comment": this.newComment
+      }
+      api.put("/posts/" + this.param.id + "/comment", JSON.stringify(params),
+        {headers: {'content-type': 'application/json'}}
+      ).then(() => {
+        alert("성공적으로 등록되었습니다.")
+      }).catch(err => {
+        alert(err.response.data)
+      })
     }
   }
 }
