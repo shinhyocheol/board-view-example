@@ -79,12 +79,14 @@
                   <textarea
                     class="commentArea"
                     placeholder="댓글을 작성하세요."
+                    v-model="newReply"
                   />
 
                   <button
                     type="button"
                     class="commentSubmitBtn float-right shadow-lg"
                     v-text="'댓글등록'"
+                    @click="regReply(comment.commentId)"
                   />
                   <button
                     type="button"
@@ -122,6 +124,7 @@ export default {
     return {
       isShow: false,
       newComment: "",
+      newReply: "",
       commentList: []
     }
   },
@@ -143,10 +146,30 @@ export default {
         return false
       }
       let params = {
-        "postsRegno": this.postsId,
-        "comment": this.newComment
+        "postsId": this.postsId,
+        "comment": this.newComment,
+        "depthNo": 0 // 0 : 댓글, 1: 대댓글
       }
-      api.put("/posts/" + this.param.id + "/comment", JSON.stringify(params),
+      api.post("/posts/" + this.postsId + "/comment", JSON.stringify(params),
+        {headers: {'content-type': 'application/json'}}
+      ).then(() => {
+        alert("성공적으로 등록되었습니다.")
+      }).catch(err => {
+        alert(err.response.data)
+      })
+    },
+    regReply(commentId) {
+      if (!this.newReply) {
+        alert("댓글을 입력해주시기 바랍니다.")
+        return false
+      }
+      let params = {
+        "groupNo": commentId,
+        "postsId": this.postsId,
+        "comment": this.newReply,
+        "depthNo": 1 // 0 : 댓글, 1: 대댓글
+      }
+      api.post("/posts/" + this.postsId + "/comment/" + commentId, JSON.stringify(params),
         {headers: {'content-type': 'application/json'}}
       ).then(() => {
         alert("성공적으로 등록되었습니다.")
