@@ -29,7 +29,10 @@
               class="commentRow"
             >
               <div class="commentRowHead">
-                <img class="commentUserProfileImg" />
+                <img 
+                  class="commentUserProfileImg" 
+                  :src="thumbnails[getRandom()]"
+                />
                 <div class="commentUserInfo">
                   <p>{{comment.memberNickname}}</p>
                   <p>{{comment.createdDate}}</p>
@@ -50,7 +53,10 @@
                     >
                       <div class="commentRow">
                         <div class="commentRowHead">
-                          <img class="commentUserProfileImg" />
+                          <img 
+                            class="commentUserProfileImg"
+                            :src="thumbnails[getRandom()]"
+                          />
                           <div class="commentUserInfo">
                             <p>{{reply.memberNickname}}</p>
                             <p>{{reply.createdDate}}</p>
@@ -104,7 +110,17 @@ export default {
       newComment: "",
       newReply: "",
       comments: [],
-      replys:[]
+      replys:[],
+      thumbnails: [
+        "/img/user(1).png",
+        "/img/user(2).png",
+        "/img/user(3).png",
+        "/img/user(4).png",
+        "/img/user(5).png",
+        "/img/user(6).png",
+        "/img/user(7).png",
+        "/img/user(8).png"
+      ]
     }
   },
   watch: {
@@ -121,6 +137,9 @@ export default {
     }
   },
   methods: {
+    getRandom() {
+      return Math.floor(Math.random() * 6)
+    },
     regComment() {
       if (!this.newComment) {
         alert("댓글을 입력해주시기 바랍니다.")
@@ -202,7 +221,7 @@ export default {
   line-height: 1.75;
 }
 .commentSubmitBtn {
-  background-color:rgb(18, 184, 134); 
+  background-color:rgb(40, 41, 41); 
   color:#fff; 
   border:0; 
   border-radius:3px; 
@@ -225,7 +244,7 @@ export default {
 }
 .commentUserProfileImg{
   width:50px; 
-  height:50px; 
+  height:70px; 
   float:left;
 }
 .commentUserInfo{

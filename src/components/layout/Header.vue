@@ -7,10 +7,10 @@
         </a>
         <div class="collapse navbar-collapse" id="navbarNav">
           <div class="navbar-nav">
-            <a class="nav-item nav-link" href="#">Home</a>
+            <!-- <a class="nav-item nav-link" href="#">Home</a>
             <a class="nav-item nav-link" href="#">Posts</a>
             <a class="nav-item nav-link" href="#">Table</a>
-            <a class="nav-item nav-link" href="#">Etc</a>
+            <a class="nav-item nav-link" href="#">Etc</a> -->
           </div>
         </div>
       </div>
