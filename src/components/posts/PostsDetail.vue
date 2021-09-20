@@ -107,11 +107,13 @@
       </div>
     </div>
 
-    <Comment
-      v-if="disabled"
-      :posts-id="param.id"
-      :item="comments"
-    />
+    <div v-if="disabled">
+      <Comment
+        :posts-id="param.id"
+        :item="comments"
+        @callParentFunction="getPosts"
+      />
+    </div>
 
   </div>
 </template>

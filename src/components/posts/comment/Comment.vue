@@ -4,7 +4,7 @@
 
         <!-- 댓글 입력창 요소 -->
         <div class="commentAreaField">
-          <p class="commentCountTxt">총 {{commentList.length}}개의 댓글</p>
+          <p class="commentCountTxt">총 {{item.length}}개의 댓글</p>
           <textarea
             class="commentArea"
             v-model="newComment"
@@ -19,15 +19,14 @@
         </div>
 
         <!-- 댓글 목록 요소 -->
-        <div v-if="isShow">
+        <div >
           <div 
             class="commentListField"
-            v-for="(comment, i) in commentList" 
+            v-for="(comment, i) in comments" 
             :key="i"
           >
             <div 
               class="commentRow"
-              v-if="comment.depthNo === 0"
             >
               <div class="commentRowHead">
                 <img class="commentUserProfileImg" />
@@ -40,15 +39,13 @@
               <div class="commentRowBody">
                 <div class="clearBothWidth100">
                   <p>{{comment.comment}}</p>
-                  
                   <div
-                    v-for="(reply, j) in commentList" 
+                    v-for="(reply, j) in replys" 
                     :key="j"
                     class="innerCommentFieldBlock"
                   >
                     <div
-                      v-if="reply.depthNo === 1 
-                      && comment.groupNo === reply.groupNo" 
+                      v-if="comment.groupNo === reply.groupNo" 
                       class="commentListField"
                     >
                       <div class="commentRow">
@@ -70,7 +67,6 @@
               </div>
               <div 
                 class="commentRowBottom"
-                v-if="isShow"
               >
                 <div 
                   class="commentAreaField" 
@@ -78,38 +74,20 @@
                 >
                   <textarea
                     class="commentArea"
-                    placeholder="댓글을 작성하세요."
+                    placeholder="답글을 작성하세요."
                     v-model="newReply"
                   />
 
                   <button
                     type="button"
-                    class="commentSubmitBtn float-right shadow-lg"
-                    v-text="'댓글등록'"
+                    class="replySubmitBtn float-right shadow-lg"
+                    v-text="'등록'"
                     @click="regReply(comment.commentId)"
-                  />
-                  <button
-                    type="button"
-                    class="commentCancelBtn float-right shadow-lg"
-                    style="margin-right:10px;"
-                    v-text="'취소'"
-                    @click="replyHide()"
                   />
                 </div>
               </div>
             </div>
           </div>
-        </div>
-
-        <div 
-          class="replyShowBtn"
-        >
-          <button 
-            v-if="!isShow"
-            class="replyShowBtn"
-            @click="replyShow()"
-            v-text="'펼치기'"
-          />
         </div>
 
       </div>
@@ -122,24 +100,27 @@ export default {
   props: ['item', 'postsId', 'getHandler'],
   data() {
     return {
-      isShow: false,
+      replyRegShow: [],
       newComment: "",
       newReply: "",
-      commentList: []
+      comments: [],
+      replys:[]
     }
   },
   watch: {
     item() {
-      this.commentList = this.item
+      this.comments = []
+      this.replys = []
+      for (var i=0; i<this.item.length; i++) {
+        if (this.item[i].depthNo == 0) {
+          this.comments.push(this.item[i])
+        } else {
+          this.replys.push(this.item[i])
+        }
+      }
     }
   },
   methods: {
-    replyShow() {
-      this.isShow = true
-    },
-    replyHide() {
-      this.isShow = false
-    },
     regComment() {
       if (!this.newComment) {
         alert("댓글을 입력해주시기 바랍니다.")
@@ -154,6 +135,8 @@ export default {
         {headers: {'content-type': 'application/json'}}
       ).then(() => {
         alert("성공적으로 등록되었습니다.")
+        this.newComment = ""
+        this.$emit('callParentFunction')
       }).catch(err => {
         alert(err.response.data)
       })
@@ -173,6 +156,8 @@ export default {
         {headers: {'content-type': 'application/json'}}
       ).then(() => {
         alert("성공적으로 등록되었습니다.")
+        this.newReply = ""
+        this.$emit('callParentFunction')
       }).catch(err => {
         alert(err.response.data)
       })
@@ -190,6 +175,7 @@ export default {
   height: auto;
   float: left;
   margin-bottom: 15px;
+  border-bottom: 1px solid #ebebeb;
 }
 .commentListField {
   padding-top: 20px;
@@ -221,14 +207,16 @@ export default {
   border:0; 
   border-radius:3px; 
   margin-top:5px;
+  margin-bottom: 25px;
   padding:5px 15px 5px 15px;
 }
-.commentCancelBtn {
+.replySubmitBtn {
   background-color:rgb(173, 181, 189);
   color:#fff; 
   border:0; 
   border-radius:3px; 
   margin-top:5px;
+  margin-bottom: 25px;
   padding:5px 15px 5px 15px;
 }
 .commentRowHead{
