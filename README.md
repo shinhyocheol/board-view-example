@@ -32,7 +32,7 @@ npm run lint
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
 
-# 화면과 코드간략 소개
+# 화면과 코드간략 소개(아래 코드는 일부입니다. 전체코드는 직접 확인하셔야 합니다.)
 
 ## 로그인
 
