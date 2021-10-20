@@ -19,7 +19,7 @@ const getters = {
 
 const mutations = {
   login (state, item) {
-      state.token = item.headers['x-access-token']
+      state.token = item.headers['accesstoken']
       state.id = item.data['id']
       state.role = item.data['role']
       state.email = item.data['email']

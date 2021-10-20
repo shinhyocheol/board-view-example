@@ -5,7 +5,7 @@ import { store } from '@/store/index.js'
 const instance = axios.create({
   baseURL: 'http://localhost:8080',
   headers: {
-    'x-access-token': store.state.token
+    'accesstoken': store.state.token
   },
   timeout: 1000
 })
