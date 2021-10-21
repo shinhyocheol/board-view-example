@@ -31,7 +31,7 @@
                 <div class="comment-row-head">
                   <img 
                     class="comment-user-profile-img" 
-                    :src="thumbnails[getRandom()]"
+                    :src="commenterProfiles[i]"
                   />
                   <div class="comment-user-info">
                     <p>{{comment.memberNickname}}</p>
@@ -59,7 +59,7 @@
                       <div class="comment-row-head">
                         <img 
                           class="comment-user-profile-img"
-                          :src="thumbnails[getRandom()]"
+                          :src="replylerProfiles[j]"
                         />
                         <div class="comment-user-info">
                           <p>{{reply.memberNickname}}</p>
@@ -113,6 +113,8 @@ export default {
       newReply: "",
       comments: [],
       replys:[],
+      commenterProfiles: [],
+      replylerProfiles: [],
       thumbnails: [
         "/img/user(1).png",
         "/img/user(2).png",
@@ -132,8 +134,10 @@ export default {
       for (var i=0; i<this.item.length; i++) {
         if (this.item[i].depthNo == 0) {
           this.comments.push(this.item[i])
+          this.commenterProfiles.push(this.thumbnails[this.getRandom()])
         } else {
           this.replys.push(this.item[i])
+          this.replylerProfiles.push(this.thumbnails[this.getRandom()])
         }
       }
     }
@@ -296,7 +300,7 @@ export default {
   width: 100%;
 }
 .inner-comment-field-block {
-  padding:0px 15px 0px 15px; 
+  padding:0px 15px 0px 35px; 
   display:flex;
 }
 .bottom-gray-line {

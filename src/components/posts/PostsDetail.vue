@@ -101,7 +101,7 @@
         </form>
         <p class="text-right">
           <small class="text-muted">
-            {{posts.author}} ({{posts.createdDate}})
+            {{posts.memberNickname}} ({{posts.createdDate}})
           </small>
         </p>
       </div>
