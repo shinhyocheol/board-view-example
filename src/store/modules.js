@@ -14,7 +14,8 @@ const getters = {
   'token': state => state.token,
   'id': state => state.id,
   'email': state => state.email,
-  'nickname': state => state.nickname
+  'nickname': state => state.nickname,
+  'role': state => state.role
 }
 
 const mutations = {

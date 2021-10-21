@@ -1,7 +1,7 @@
 <template>
   <div class="container">
 
-    <div class="customBtnRow">
+    <div class="custom-btn-row">
       <div class="row mt-3 float-left">
         <div class="col-auto">
           <router-link 
@@ -90,7 +90,7 @@ export default {
 }
 </script>
 <style scoped>
-.customBtnRow {
+.custom-btn-row {
   float:left; 
   width:100%; 
   margin-bottom:20px;

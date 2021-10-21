@@ -1,12 +1,12 @@
 <template>
-  <div class="card shadow-lg commentBox">
+  <div class="card shadow-lg comment-box">
       <div class="card-body">
 
         <!-- 댓글 입력창 요소 -->
-        <div class="commentAreaField">
-          <p class="commentCountTxt">총 {{item.length}}개의 댓글</p>
+        <div class="comment-area-field bottom-gray-line">
+          <p class="comment-count-txt">총 {{item.length}}개의 댓글</p>
           <textarea
-            class="commentArea"
+            class="comment-area"
             v-model="newComment"
             placeholder="댓글을 작성하세요."
           />
@@ -19,67 +19,68 @@
         </div>
 
         <!-- 댓글 목록 요소 -->
-        <div >
+        <div>
           <div 
-            class="commentListField"
+            class="comment-list-field"
             v-for="(comment, i) in comments" 
             :key="i"
           >
-            <div 
-              class="commentRow"
-            >
-              <div class="commentRowHead">
-                <img 
-                  class="commentUserProfileImg" 
-                  :src="thumbnails[getRandom()]"
-                />
-                <div class="commentUserInfo">
-                  <p>{{comment.memberNickname}}</p>
-                  <p>{{comment.createdDate}}</p>
-                </div>
-              </div>
+            <div class="commentRow">
               
-              <div class="commentRowBody">
-                <div class="clearBothWidth100">
-                  <p>{{comment.comment}}</p>
-                  <div
-                    v-for="(reply, j) in replys" 
-                    :key="j"
-                    class="innerCommentFieldBlock"
-                  >
-                    <div
-                      v-if="comment.groupNo === reply.groupNo" 
-                      class="commentListField"
-                    >
-                      <div class="commentRow">
-                        <div class="commentRowHead">
-                          <img 
-                            class="commentUserProfileImg"
-                            :src="thumbnails[getRandom()]"
-                          />
-                          <div class="commentUserInfo">
-                            <p>{{reply.memberNickname}}</p>
-                            <p>{{reply.createdDate}}</p>
-                          </div>
-                        </div>
-                        <div class="commentRowBody">
-                          <p>{{reply.comment}}</p>
-                        </div>
-                      </div>
-                    </div>
-
+              <div class="bottom-gray-line">
+                <div class="comment-row-head">
+                  <img 
+                    class="comment-user-profile-img" 
+                    :src="thumbnails[getRandom()]"
+                  />
+                  <div class="comment-user-info">
+                    <p>{{comment.memberNickname}}</p>
+                    <p>{{comment.createdDate}}</p>
+                  </div>
+                </div>
+                <div class="comment-row-body">
+                  <div class="clear-both-width-100">
+                    <p>{{comment.comment}}</p>
                   </div>
                 </div>
               </div>
-              <div 
-                class="commentRowBottom"
-              >
+
+              <div>
+                <div
+                  v-for="(reply, j) in replys" 
+                  :key="j"
+                  class="inner-comment-field-block"
+                >
+                  <div
+                    v-if="comment.groupNo === reply.groupNo" 
+                    class="comment-list-field bottom-gray-line"
+                  >
+                    <div class="commentRow">
+                      <div class="comment-row-head">
+                        <img 
+                          class="comment-user-profile-img"
+                          :src="thumbnails[getRandom()]"
+                        />
+                        <div class="comment-user-info">
+                          <p>{{reply.memberNickname}}</p>
+                          <p>{{reply.createdDate}}</p>
+                        </div>
+                      </div>
+                      <div class="comment-row-body">
+                        <p>{{reply.comment}}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="comment-row-bottom">
                 <div 
-                  class="commentAreaField" 
+                  class="comment-area-field" 
                   style="padding:0px 15px 0px;"
                 >
                   <textarea
-                    class="commentArea"
+                    class="comment-area"
                     placeholder="답글을 작성하세요."
                     v-model="newReply"
                   />
@@ -92,6 +93,7 @@
                   />
                 </div>
               </div>
+
             </div>
           </div>
         </div>
@@ -139,74 +141,82 @@ export default {
   methods: {
     getRandom() {
       return Math.floor(Math.random() * 6)
+
     },
     regComment() {
       if (!this.newComment) {
         alert("댓글을 입력해주시기 바랍니다.")
         return false
       }
-      let params = {
+
+      let requestHeander = {headers: {'content-type': 'application/json'}}
+      let requestUrl = "/posts/" + this.postsId + "/comment"
+      let requestParams = JSON.stringify({
         "postsId": this.postsId,
         "comment": this.newComment,
         "depthNo": 0 // 0 : 댓글, 1: 대댓글
-      }
-      api.post("/posts/" + this.postsId + "/comment", JSON.stringify(params),
-        {headers: {'content-type': 'application/json'}}
+      })
+
+      api.post(
+        requestUrl, 
+        requestParams,
+        requestHeander
       ).then(() => {
         alert("성공적으로 등록되었습니다.")
         this.newComment = ""
         this.$emit('callParentFunction')
-      }).catch(err => {
-        alert(err.response.data)
-      })
+      }).catch(err => { alert(err.response.data) })
+
     },
     regReply(commentId) {
       if (!this.newReply) {
         alert("댓글을 입력해주시기 바랍니다.")
         return false
       }
-      let params = {
+
+      let requestHeander = {headers: {'content-type': 'application/json'}}
+      let requestUrl = "/posts/" + this.postsId + "/comment/" + commentId
+      let requestParams = JSON.stringify({
         "groupNo": commentId,
         "postsId": this.postsId,
         "comment": this.newReply,
         "depthNo": 1 // 0 : 댓글, 1: 대댓글
-      }
-      api.post("/posts/" + this.postsId + "/comment/" + commentId, JSON.stringify(params),
-        {headers: {'content-type': 'application/json'}}
+      })
+
+      api.post(
+        requestUrl, 
+        requestParams,
+        requestHeander
       ).then(() => {
         alert("성공적으로 등록되었습니다.")
         this.newReply = ""
         this.$emit('callParentFunction')
-      }).catch(err => {
-        alert(err.response.data)
-      })
+      }).catch(err => { alert(err.response.data) })
+
     }
   }
 }
 </script>
 <style scoped>
-.commentBox {
+.comment-box {
   margin-top: 10px;
   padding-bottom: 30px;
 }
-.commentAreaField {
+.comment-area-field {
   width: 100%;
   height: auto;
   float: left;
-  margin-bottom: 15px;
-  border-bottom: 1px solid #ebebeb;
 }
-.commentListField {
+.comment-list-field {
   padding-top: 20px;
   width: 100%;
   height: auto;
   float: left;
-  border-bottom: 1px solid #ebebeb;
 }
-.commentCountTxt{
+.comment-count-txt{
   color: rgba(78, 82, 78, 0.445);
 }
-.commentArea{
+.comment-area{
   height: 70px;
   resize: none;
   padding: 1rem 1rem 1.5rem;
@@ -238,33 +248,33 @@ export default {
   margin-bottom: 25px;
   padding:5px 15px 5px 15px;
 }
-.commentRowHead{
+.comment-row-head{
   padding: 10px;
   display:flex;
 }
-.commentUserProfileImg{
+.comment-user-profile-img{
   width:50px; 
   height:70px; 
   float:left;
 }
-.commentUserInfo{
+.comment-user-info{
   padding-left:15px; 
   float:left; 
   color:rgb(52, 58, 64);
 }
-.commentUserInfo p:first-child {
+.comment-user-info p:first-child {
   margin-bottom:0px; 
   font-weight: bold;
 }
-.commentUserInfo p:last-child {
+.comment-user-info p:last-child {
   font-size: 0.875rem;
 }
-.commentRowBody {
+.comment-row-body {
   color:rgb(52, 58, 64);
   padding: 10px;
   display: flex;
 }
-.commentRowBottom {
+.comment-row-bottom {
   color:rgb(52, 58, 64);
   padding: 30px 10px 10px;
   display: flex;
@@ -281,12 +291,15 @@ export default {
   border:0px; 
   color:rgb(52, 58, 64);
 }
-.clearBothWidth100{
+.clear-both-width-100{
   clear:both;
   width: 100%;
 }
-.innerCommentFieldBlock {
+.inner-comment-field-block {
   padding:0px 15px 0px 15px; 
   display:flex;
+}
+.bottom-gray-line {
+  border-bottom: 1px solid #ebebeb;
 }
 </style>

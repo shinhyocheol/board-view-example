@@ -2,13 +2,13 @@
   
   <div class="container" style="padding-bottom:50px;">
     
-    <div class="customBtnRow">
+    <div class="custom-btn-row">
       <div class="row mt-3 float-left">
         <div class="col-auto">
           <router-link 
             v-if="disabled"
             :to="{path:'/posts'}"
-            class="btn btn-info"
+            class="btn btn-dark"
           >
             <i class="fa fa-list" />
           </router-link>
@@ -22,18 +22,18 @@
         <div class="col-auto">
           <button 
             v-if="posts.memberId === memberId"
-            class="btn btn-primary" 
+            class="btn btn-dark" 
             type="button"
             @click="setMode()"
           >
-            <i class="fa fa-edit" />
+            <i class="fa fa-edit"></i>
           </button>
         </div>
 
         <div class="col-auto">
           <button 
             v-if="posts.memberId === memberId"
-            class="btn btn-danger" 
+            class="btn btn-dark" 
             type="button"
             @click="delPosts()"
           >
@@ -49,7 +49,7 @@
       >
         <div class="col-auto">
           <button 
-            class="btn btn-success" 
+            class="btn btn-dark" 
             type="button"
             @click="setPosts()"
           >
@@ -59,7 +59,7 @@
         
         <div class="col-auto">
           <button 
-            class="btn btn-warning" 
+            class="btn btn-dark" 
             type="button"
             @click="readMode()"
           >
@@ -133,6 +133,13 @@ export default {
       comments: []
     }
   },
+  watch: {
+    disabled() {
+      if (this.disabled) {
+        this.handleService()
+      }
+    }
+  },
   created () {
     this.handleService()
   },
@@ -192,7 +199,7 @@ form{
 .form-group{
   border-bottom: 1px solid #ebebeb;
 }
-.customBtnRow {
+.custom-btn-row {
   float:left; 
   width:100%; 
   margin-bottom:20px;
